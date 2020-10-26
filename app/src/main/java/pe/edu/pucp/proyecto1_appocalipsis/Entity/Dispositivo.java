@@ -3,12 +3,21 @@ package pe.edu.pucp.proyecto1_appocalipsis.Entity;
 import java.util.ArrayList;
 
 public class Dispositivo {
+    private int id;
     private String tipo;
     private String foto;
     private String marca;
     private ArrayList<String> caracteristicas=new ArrayList<>();
     private ArrayList<String> incluye= new ArrayList<>();
     private int stock;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTipo() {
         return tipo;

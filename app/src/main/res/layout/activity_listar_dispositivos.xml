@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:ems="10"
-        android:hint="tipo"
+        android:hint="Buscar Dispositivo"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
@@ -51,4 +51,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filtroTipo" />
+
+    <ImageView
+        android:id="@+id/lupa"
+        android:layout_width="48dp"
+        android:layout_height="46dp"
+        app:layout_constraintBottom_toBottomOf="@+id/filtroTipo"
+        app:layout_constraintStart_toEndOf="@+id/filtroTipo"
+        app:layout_constraintTop_toTopOf="@+id/filtroTipo"
+        app:srcCompat="@drawable/buscar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

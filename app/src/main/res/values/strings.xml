@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Proyecto1-Appocalipsis</string>
+    <string name="lista_de_dispositivos">Lista de dispositivos</string>
+    <string name="tipo">Tipo</string>
+    <string name="marca">Marca</string>
+    <string name="todo">TODO</string>
+    <string name="mas_detalles">mas detalles</string>
 </resources>

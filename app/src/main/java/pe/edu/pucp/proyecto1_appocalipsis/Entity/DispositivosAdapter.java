@@ -97,7 +97,7 @@ public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapte
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(contexto, MasDetalles.class);
-                    intent.putExtra("idDispositivo",dispositivo.getId());
+                    intent.putExtra("Dispositivo",dispositivo);
                     contexto.startActivity(intent);
                 }
             });

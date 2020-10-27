@@ -5,4 +5,12 @@
     <string name="marca">Marca</string>
     <string name="todo">TODO</string>
     <string name="mas_detalles">mas detalles</string>
+    <string name="caracteristicas">Caracteristicas:</string>
+    <string name="listar_caracteristicas">Listar Caracteristicas</string>
+    <string name="incluye">Incluye</string>
+    <string name="listar_lo_que_incluye">Listar lo que incluye</string>
+    <string name="todo">TODO</string>
+    <string name="dispositivos_en_stock">Dispositivos en Stock:</string>
+    <string name="textview">TextView</string>
+    <string name="button">Button</string>
 </resources>

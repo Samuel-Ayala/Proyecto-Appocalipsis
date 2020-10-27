@@ -1,8 +1,9 @@
 package pe.edu.pucp.proyecto1_appocalipsis.Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Dispositivo {
+public class Dispositivo implements Serializable {
     private int id;
     private String tipo;
     private String foto;

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import pe.edu.pucp.proyecto1_appocalipsis.Entity.ListarSolicitudesAdapter;
+import pe.edu.pucp.proyecto1_appocalipsis.Entity.ListarReservasAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
@@ -22,9 +22,9 @@ public class SolicitudesDePrestamo extends AppCompatActivity {
         //Get con las reservas en estado procesando del usuario en sesion
 
         //Se llenan las solicutudes en el recycler view
-        ListarSolicitudesAdapter listarSolicitudesAdapter = new ListarSolicitudesAdapter(reservas,getApplicationContext());
+        ListarReservasAdapter listarReservasAdapter = new ListarReservasAdapter(reservas,getApplicationContext());
         RecyclerView rv = findViewById(R.id.rvSolicitudesPrestamos);
-        rv.setAdapter(listarSolicitudesAdapter);
+        rv.setAdapter(listarReservasAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
 

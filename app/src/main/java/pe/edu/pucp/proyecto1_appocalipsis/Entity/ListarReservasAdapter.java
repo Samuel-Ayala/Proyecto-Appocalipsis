@@ -11,26 +11,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
-public class ListarSolicitudesAdapter extends RecyclerView.Adapter<ListarSolicitudesAdapter.ViewHolder>{
+public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAdapter.ViewHolder>{
 
     private Reserva[] reservas;
     private Context context;
 
-    public ListarSolicitudesAdapter(Reserva[] reservas, Context context) {
+    public ListarReservasAdapter(Reserva[] reservas, Context context) {
         this.reservas = reservas;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ListarSolicitudesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListarReservasAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.reserva,parent,false);
-        ListarSolicitudesAdapter.ViewHolder viewHolder = new ListarSolicitudesAdapter.ViewHolder(itemView);
+        ListarReservasAdapter.ViewHolder viewHolder = new ListarReservasAdapter.ViewHolder(itemView);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListarSolicitudesAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListarReservasAdapter.ViewHolder holder, int position) {
         holder.reserva=reservas[position];
         holder.context=context;
 

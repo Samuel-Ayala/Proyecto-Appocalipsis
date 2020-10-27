@@ -26,4 +26,7 @@
     <string name="cerrar_sesion">Cerrar Sesion</string>
     <string name="solicitudes_de_prestamos">Solicitudes de prestamos</string>
     <string name="estado">estado</string>
+    <string name="listar_dispositivos">Listar Dispositivos</string>
+    <string name="historial_de_reservas">Historial de reservas</string>
+    <string name="solicitudes_de_reserva">Solicitudes de reserva</string>
 </resources>

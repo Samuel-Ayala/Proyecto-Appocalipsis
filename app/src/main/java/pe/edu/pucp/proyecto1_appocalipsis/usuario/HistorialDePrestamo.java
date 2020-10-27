@@ -1,10 +1,16 @@
 package pe.edu.pucp.proyecto1_appocalipsis.usuario;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.ListarReservasAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
@@ -27,4 +33,36 @@ public class HistorialDePrestamo extends AppCompatActivity {
         rv.setAdapter(listarReservasAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.usuario_app_bar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId())
+        {
+            case R.id.listarDispositvosBar:
+                intent = new Intent(getApplicationContext(),ListarDispositivos.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.historialReservasBar:
+                intent = new Intent(getApplicationContext(),HistorialDePrestamo.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.solicitudesReservaBar:
+                intent = new Intent(getApplicationContext(),SolicitudesDePrestamo.class);
+                startActivity(intent);
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
+

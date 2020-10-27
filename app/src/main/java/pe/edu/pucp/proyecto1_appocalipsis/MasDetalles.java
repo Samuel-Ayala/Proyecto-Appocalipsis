@@ -3,7 +3,6 @@ package pe.edu.pucp.proyecto1_appocalipsis;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,7 +51,7 @@ public class MasDetalles extends AppCompatActivity {
         reservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(MasDetalles.this,Reserva.class);
+                Intent intent1 = new Intent(MasDetalles.this, ReservaDispositivos.class);
                 intent1.putExtra("Disposituvo",dispositivo);
                 startActivity(intent1);
             }

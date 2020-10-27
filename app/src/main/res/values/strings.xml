@@ -13,4 +13,10 @@
     <string name="dispositivos_en_stock">Dispositivos en Stock:</string>
     <string name="textview">TextView</string>
     <string name="button">Button</string>
+    <string name="indique_el_motivo_de_su_reserva">Indique el motivo de su reserva</string>
+    <string name="reservar">Reservar</string>
+    <string name="indique_su_direccion">Indique su direccion</string>
+    <string name="aqui_entrara_lo_de_la_ubicacion">Aqui entrara lo de la ubicacion</string>
+    <string name="solicitud_de_reserva">Solicitud de reserva</string>
+    <string name="desea_recibir_un_correo_electronico_con_la_respuesta_a_la_reserva">Desea recibir un correo electronico con la respuesta a la reserva</string>
 </resources>

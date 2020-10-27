@@ -7,7 +7,16 @@ public class Reserva {
     private String direccion;
     private String ubicacion;
     private boolean enviarCorreo;
+    private String estado;
     //Agregar la sesion
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public Dispositivo getDispositivo() {
         return dispositivo;

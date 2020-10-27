@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReservaDispositivos"></activity>
+        <activity android:name=".SolicitudesDePrestamo"></activity>
+        <activity android:name=".HistorialDePrestamo" />
+        <activity android:name=".MenuPrincipalUsuario" />
+        <activity android:name=".ReservaDispositivos" />
         <activity android:name=".MasDetalles" />
         <activity android:name=".ListarDispositivos" />
         <activity android:name=".MainActivity">

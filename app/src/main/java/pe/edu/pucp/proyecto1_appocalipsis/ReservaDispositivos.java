@@ -61,6 +61,8 @@ public class ReservaDispositivos extends AppCompatActivity {
                     //Agregar la sesion
 
                     //Hacer el post
+
+                    //Mandarlo a mas detalles
                 }
 
             }

@@ -19,4 +19,9 @@
     <string name="aqui_entrara_lo_de_la_ubicacion">Aqui entrara lo de la ubicacion</string>
     <string name="solicitud_de_reserva">Solicitud de reserva</string>
     <string name="desea_recibir_un_correo_electronico_con_la_respuesta_a_la_reserva">Desea recibir un correo electronico con la respuesta a la reserva</string>
+    <string name="ver_lista_de_dispositivos_disponibles">Ver lista de dispositivos disponibles</string>
+    <string name="ver_las_solicitudes_de_prestamo">Ver las solicitudes de prestamo</string>
+    <string name="ver_el_historial_de_prestamo">Ver el historial de prestamo</string>
+    <string name="bienvenido_al_sistema_de_prestamo_pucp">Bienvenido al sistema de prestamo PUCP</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
 </resources>

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuPrincipalUsuario">
+    tools:context=".usuario.MenuPrincipalUsuario">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/listaDispositivosMenu"
         android:layout_width="161dp"
         android:layout_height="105dp"
         android:layout_marginTop="156dp"
@@ -17,24 +17,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/solicitudesDePrestamoMenu"
         android:layout_width="161dp"
         android:layout_height="105dp"
         android:layout_marginTop="24dp"
         android:text="@string/ver_las_solicitudes_de_prestamo"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toEndOf="@+id/listaDispositivosMenu"
+        app:layout_constraintStart_toStartOf="@+id/listaDispositivosMenu"
+        app:layout_constraintTop_toBottomOf="@+id/listaDispositivosMenu" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/historialDePrestamoMenu"
         android:layout_width="161dp"
         android:layout_height="105dp"
         android:layout_marginTop="24dp"
         android:text="@string/ver_el_historial_de_prestamo"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintEnd_toEndOf="@+id/solicitudesDePrestamoMenu"
+        app:layout_constraintStart_toStartOf="@+id/solicitudesDePrestamoMenu"
+        app:layout_constraintTop_toBottomOf="@+id/solicitudesDePrestamoMenu" />
 
     <TextView
         android:id="@+id/textView2"
@@ -49,13 +49,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/CerrarSesionMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/cerrar_sesion"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="@+id/historialDePrestamoMenu"
         app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintStart_toStartOf="@+id/historialDePrestamoMenu"
+        app:layout_constraintTop_toBottomOf="@+id/historialDePrestamoMenu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

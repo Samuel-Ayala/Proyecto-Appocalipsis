@@ -1,4 +1,4 @@
-package pe.edu.pucp.proyecto1_appocalipsis;
+package pe.edu.pucp.proyecto1_appocalipsis.usuario;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
+import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class MasDetalles extends AppCompatActivity {
 

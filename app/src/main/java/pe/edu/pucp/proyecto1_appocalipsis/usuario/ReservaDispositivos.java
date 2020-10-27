@@ -1,4 +1,4 @@
-package pe.edu.pucp.proyecto1_appocalipsis;
+package pe.edu.pucp.proyecto1_appocalipsis.usuario;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
+import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class ReservaDispositivos extends AppCompatActivity {
 
@@ -58,6 +59,7 @@ public class ReservaDispositivos extends AppCompatActivity {
                     reserva.setEnviarCorreo(correo.isChecked());
                     reserva.setMotivo(motivo.getText().toString());
                     reserva.setUbicacion(ubicacion.getText().toString());
+                    reserva.setEstado("Procesando");
                     //Agregar la sesion
 
                     //Hacer el post

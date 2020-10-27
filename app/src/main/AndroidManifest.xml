@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SolicitudesDePrestamo"></activity>
-        <activity android:name=".HistorialDePrestamo" />
-        <activity android:name=".MenuPrincipalUsuario" />
-        <activity android:name=".ReservaDispositivos" />
-        <activity android:name=".MasDetalles" />
-        <activity android:name=".ListarDispositivos" />
+        <activity android:name=".usuario.SolicitudesDePrestamo"></activity>
+        <activity android:name=".usuario.HistorialDePrestamo" />
+        <activity android:name=".usuario.MenuPrincipalUsuario" />
+        <activity android:name=".usuario.ReservaDispositivos" />
+        <activity android:name=".usuario.MasDetalles" />
+        <activity android:name=".usuario.ListarDispositivos" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

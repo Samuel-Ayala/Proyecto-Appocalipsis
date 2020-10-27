@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import pe.edu.pucp.proyecto1_appocalipsis.R;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

@@ -1,4 +1,4 @@
-package pe.edu.pucp.proyecto1_appocalipsis;
+package pe.edu.pucp.proyecto1_appocalipsis.usuario;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,6 +16,7 @@ import java.util.ArrayList;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.DispositivosAdapter;
+import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class ListarDispositivos extends AppCompatActivity {
 

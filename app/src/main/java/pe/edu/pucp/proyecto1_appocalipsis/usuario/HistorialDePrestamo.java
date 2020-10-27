@@ -1,8 +1,10 @@
-package pe.edu.pucp.proyecto1_appocalipsis;
+package pe.edu.pucp.proyecto1_appocalipsis.usuario;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class HistorialDePrestamo extends AppCompatActivity {
 

@@ -1,15 +1,21 @@
-package pe.edu.pucp.proyecto1_appocalipsis;
+package pe.edu.pucp.proyecto1_appocalipsis.usuario;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
+import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class MasDetalles extends AppCompatActivity {
 
@@ -53,9 +59,49 @@ public class MasDetalles extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent1 = new Intent(MasDetalles.this, ReservaDispositivos.class);
                 intent1.putExtra("Disposituvo",dispositivo);
-                startActivity(intent1);
+                int reqCode = 1;
+                startActivityForResult(intent,reqCode);
             }
         });
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1 && resultCode== RESULT_OK)
+        {
+            Toast.makeText(getApplicationContext(),"Reserva exitosa", Toast.LENGTH_LONG);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.usuario_app_bar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId())
+        {
+            case R.id.listarDispositvosBar:
+                intent = new Intent(getApplicationContext(),ListarDispositivos.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.historialReservasBar:
+                intent = new Intent(getApplicationContext(),HistorialDePrestamo.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.solicitudesReservaBar:
+                intent = new Intent(getApplicationContext(),SolicitudesDePrestamo.class);
+                startActivity(intent);
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

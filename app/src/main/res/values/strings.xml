@@ -24,4 +24,9 @@
     <string name="ver_el_historial_de_prestamo">Ver el historial de prestamo</string>
     <string name="bienvenido_al_sistema_de_prestamo_pucp">Bienvenido al sistema de prestamo PUCP</string>
     <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="solicitudes_de_prestamos">Solicitudes de prestamos</string>
+    <string name="estado">estado</string>
+    <string name="listar_dispositivos">Listar Dispositivos</string>
+    <string name="historial_de_reservas">Historial de reservas</string>
+    <string name="solicitudes_de_reserva">Solicitudes de reserva</string>
 </resources>

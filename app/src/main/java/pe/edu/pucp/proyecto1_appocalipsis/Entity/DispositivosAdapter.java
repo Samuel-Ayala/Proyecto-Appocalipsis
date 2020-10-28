@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import pe.edu.pucp.proyecto1_appocalipsis.ListarDispositivos;
-import pe.edu.pucp.proyecto1_appocalipsis.MasDetalles;
+import pe.edu.pucp.proyecto1_appocalipsis.usuario.MasDetalles;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapter.ViewHolder> {
@@ -49,7 +47,6 @@ public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapte
         holder.filtro=filtro;
         holder.tipo=tipoFiltro;
         holder.contexto=context;
-        //holder.imagen.setImageResource(dispositivo.getFoto()); //Ver lo de la imagen
 
     }
 

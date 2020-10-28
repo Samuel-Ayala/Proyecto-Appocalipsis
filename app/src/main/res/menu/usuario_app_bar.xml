@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/listarDispositvosBar"
+        android:icon="@drawable/listar_dispositivos"
+        android:title="@string/listar_dispositivos"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/historialReservasBar"
+        android:icon="@drawable/historial_prestamos"
+        android:title="@string/historial_de_reservas"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/solicitudesReservaBar"
+        android:title="@string/solicitudes_de_reserva"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/cerrarSesionBar"
+        android:title="@string/cerrar_sesion"
+        app:showAsAction="never" />
+</menu>

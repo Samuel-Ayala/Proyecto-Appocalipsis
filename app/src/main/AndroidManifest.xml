@@ -9,6 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".admin.EditarDispositivo"></activity>
+        <activity android:name=".admin.AgregarDispositivo" />
+        <activity android:name=".admin.GestionarDispositivos" />
+        <activity android:name=".admin.SolicitudesReserva" />
+        <activity android:name=".admin.MenuPrincipalAdmin" />
+        <activity
+            android:name=".usuario.SolicitudesDePrestamo"
+            android:parentActivityName=".usuario.MenuPrincipalUsuario" />
+        <activity
+            android:name=".usuario.HistorialDePrestamo"
+            android:parentActivityName=".usuario.MenuPrincipalUsuario" />
+        <activity android:name=".usuario.MenuPrincipalUsuario" />
+        <activity
+            android:name=".usuario.ReservaDispositivos"
+            android:parentActivityName=".usuario.MasDetalles" />
+        <activity
+            android:name=".usuario.MasDetalles"
+            android:parentActivityName=".usuario.ListarDispositivos" />
+        <activity
+            android:name=".usuario.ListarDispositivos"
+            android:parentActivityName=".usuario.MenuPrincipalUsuario" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

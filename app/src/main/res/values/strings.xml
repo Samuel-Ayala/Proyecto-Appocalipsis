@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Proyecto1-Appocalipsis</string>
+    <string name="lista_de_dispositivos">Lista de dispositivos</string>
+    <string name="tipo">Tipo</string>
+    <string name="marca">Marca</string>
+    <string name="todo">TODO</string>
+    <string name="mas_detalles">mas detalles</string>
+    <string name="caracteristicas">Caracteristicas:</string>
+    <string name="listar_caracteristicas">Listar Caracteristicas</string>
+    <string name="incluye">Incluye</string>
+    <string name="listar_lo_que_incluye">Listar lo que incluye</string>
+    <string name="todo">TODO</string>
+    <string name="dispositivos_en_stock">Dispositivos en Stock:</string>
+    <string name="textview">TextView</string>
+    <string name="button">Button</string>
+    <string name="indique_el_motivo_de_su_reserva">Indique el motivo de su reserva</string>
+    <string name="reservar">Reservar</string>
+    <string name="indique_su_direccion">Indique su direccion</string>
+    <string name="aqui_entrara_lo_de_la_ubicacion">Aqui entrara lo de la ubicacion</string>
+    <string name="solicitud_de_reserva">Solicitud de reserva</string>
+    <string name="desea_recibir_un_correo_electronico_con_la_respuesta_a_la_reserva">Desea recibir un correo electronico con la respuesta a la reserva</string>
+    <string name="ver_lista_de_dispositivos_disponibles">Ver lista de dispositivos disponibles</string>
+    <string name="ver_las_solicitudes_de_prestamo">Ver las solicitudes de prestamo</string>
+    <string name="ver_el_historial_de_prestamo">Ver el historial de prestamo</string>
+    <string name="bienvenido_al_sistema_de_prestamo_pucp">Bienvenido al sistema de prestamo PUCP</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="solicitudes_de_prestamos">Solicitudes de prestamos</string>
+    <string name="estado">estado</string>
+    <string name="listar_dispositivos">Listar Dispositivos</string>
+    <string name="historial_de_reservas">Historial de reservas</string>
+    <string name="solicitudes_de_reserva">Solicitudes de reserva</string>
 </resources>

@@ -7,12 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import pe.edu.pucp.proyecto1_appocalipsis.Entity.ListarReservasAdapter;
+import pe.edu.pucp.proyecto1_appocalipsis.Adapters.ListarReservasAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 

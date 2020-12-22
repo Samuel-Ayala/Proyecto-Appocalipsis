@@ -5,10 +5,18 @@ public class Reserva {
     private Dispositivo dispositivo;
     private String motivo;
     private String direccion;
-    private String ubicacion;
+    private String ubicacion; //con GPS
     private boolean enviarCorreo;
     private String estado;
-    //Agregar la sesion
+    private Usuario usuario;
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public String getEstado() {
         return estado;

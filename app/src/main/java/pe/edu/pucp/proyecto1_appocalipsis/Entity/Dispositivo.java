@@ -1,22 +1,21 @@
 package pe.edu.pucp.proyecto1_appocalipsis.Entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Dispositivo implements Serializable {
-    private int id;
+    private String id;
     private String tipo;
     private String foto;
     private String marca;
-    private ArrayList<String> caracteristicas=new ArrayList<>();
-    private ArrayList<String> incluye= new ArrayList<>();
+    private String caracteristicas;
+    private String incluye;
     private int stock;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -44,19 +43,19 @@ public class Dispositivo implements Serializable {
         this.marca = marca;
     }
 
-    public ArrayList<String> getCaracteristicas() {
+    public String getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(ArrayList<String> caracteristicas) {
+    public void setCaracteristicas(String caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
 
-    public ArrayList<String> getIncluye() {
+    public String getIncluye() {
         return incluye;
     }
 
-    public void setIncluye(ArrayList<String> incluye) {
+    public void setIncluye(String incluye) {
         this.incluye = incluye;
     }
 

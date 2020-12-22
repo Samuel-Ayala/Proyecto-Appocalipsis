@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import pe.edu.pucp.proyecto1_appocalipsis.Entity.ListarReservasAdapter;
+import pe.edu.pucp.proyecto1_appocalipsis.Adapters.ListarReservasAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 

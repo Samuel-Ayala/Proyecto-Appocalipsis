@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "181317755766",
+    "project_id": "appocalipsis",
+    "storage_bucket": "appocalipsis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181317755766:android:9539e79d00023a2332d057",
+        "android_client_info": {
+          "package_name": "pe.edu.pucp.proyecto1_appocalipsis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181317755766-76bobvd6pc2ombae9p74j8js2cm9uqs5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0r4BOQFu3xTQWX4m00gAm0o_tq5H_UF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181317755766-76bobvd6pc2ombae9p74j8js2cm9uqs5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

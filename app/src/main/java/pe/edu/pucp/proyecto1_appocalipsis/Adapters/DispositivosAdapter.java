@@ -1,4 +1,4 @@
-package pe.edu.pucp.proyecto1_appocalipsis.Entity;
+package pe.edu.pucp.proyecto1_appocalipsis.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.usuario.MasDetalles;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 

@@ -19,7 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
-import pe.edu.pucp.proyecto1_appocalipsis.Entity.DispositivosAdapter;
+import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class ListarDispositivos extends AppCompatActivity {

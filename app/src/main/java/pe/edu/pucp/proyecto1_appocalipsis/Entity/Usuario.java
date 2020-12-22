@@ -6,14 +6,14 @@ public class Usuario {
     private String nombre;
     private String rol;
     private String codigo;
-    private boolean admin = false;
+    private boolean ti = false;
 
-    public boolean isAdmin() {
-        return admin;
+    public boolean isTi() {
+        return ti;
     }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
+    public void setTi(boolean ti) {
+        this.ti = ti;
     }
 
     public String getCorreo() {

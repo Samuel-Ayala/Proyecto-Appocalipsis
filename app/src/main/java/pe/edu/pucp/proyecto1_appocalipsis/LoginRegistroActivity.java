@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -69,10 +70,10 @@ public class LoginRegistroActivity extends AppCompatActivity {
 
                                                     if (rol.equals("alumno") || rol.equals("docente") || rol.equals("administrador")){
                                                         dialog.dismiss();
-                                                        ingresoExitosoLoginUsuarioCliente(email);
+                                                        ingresoExitosoLoginUsuarioCliente(email,rol);
                                                     }else if (rol.equals("Usuario-TI")){
                                                         dialog.dismiss();
-                                                        ingresoExitosoLoginUsuarioTI(email);
+                                                        ingresoExitosoLoginUsuarioTI(email,rol);
                                                     }
 
                                                 }else {
@@ -112,17 +113,19 @@ public class LoginRegistroActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
     }
 
-    public void ingresoExitosoLoginUsuarioCliente(String inputEmail){
+    public void ingresoExitosoLoginUsuarioCliente(String inputEmail, String rol){
         Bundle params = new Bundle();
         params.putString("email",inputEmail);
+        params.putString("rol",rol);
         Intent i = new Intent(getApplicationContext(), MenuPrincipalUsuario.class);
         i.putExtras(params);
         startActivity(i);
     }
 
-    public void ingresoExitosoLoginUsuarioTI(String inputEmail){
+    public void ingresoExitosoLoginUsuarioTI(String inputEmail, String rol){
         Bundle params = new Bundle();
         params.putString("email",inputEmail);
+        params.putString("rol",rol);
         Intent i = new Intent(getApplicationContext(), MenuPrincipalAdmin.class);
         i.putExtras(params);
         startActivity(i);
@@ -173,7 +176,7 @@ public class LoginRegistroActivity extends AppCompatActivity {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    ///////////////////////////// MANTENER DATOS AUN CUANDO EL USUARIO SALGA DE LA APLICACION ////////////////////////
+    //////////////////// MANTENER DATOS AUN CUANDO EL USUARIO SALGA DE LA APLICACION (NO CIERRA SESION) ////////////////////
 
     public void sessionMantenerDatos(){
         SharedPreferences pref = getSharedPreferences("Datos", Context.MODE_PRIVATE);
@@ -182,14 +185,16 @@ public class LoginRegistroActivity extends AppCompatActivity {
 
         if (email != null && rol != null){
             if (rol.equals("alumno") || rol.equals("docente") || rol.equals("administrador")){
-                ingresoExitosoLoginUsuarioCliente(email);
+                ingresoExitosoLoginUsuarioCliente(email,rol);
             }else if (rol.equals("Usuario-TI")){
-                ingresoExitosoLoginUsuarioTI(email);
+                ingresoExitosoLoginUsuarioTI(email,rol);
             }
 
         }else {
             Toast.makeText(getApplicationContext(),"Error: no se mantuvieron los datos de usuario", Toast.LENGTH_SHORT).show();
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -28,28 +29,21 @@ public class MenuPrincipalAdmin extends AppCompatActivity {
         setContentView(R.layout.activity_menu_principal_admin);
 
         ///////////////////////Obtencion de datos de Database y guardado de datos/////////////////////////////////
+        Bundle parametros = this.getIntent().getExtras();
+        String email = parametros.getString("email");
+        String rol = parametros.getString(("rol"));
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String email = user.getEmail();
-        final String[] rol = new String[1];
-        DatabaseReference userDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
-        userDatabase.child(user.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    rol[0] = snapshot.child("rol").getValue().toString();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Error: la base de datos no responde", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        if (user != null){
+            String uid = user.getUid();
+            Log.d("uid",uid);
+        }else {
+            Log.d("Estado del usuario:","no logueado");
 
-            }
-        });
-
+        }
         SharedPreferences.Editor pref = getSharedPreferences("Datos", Context.MODE_PRIVATE).edit();
         pref.putString("email",email);
-        pref.putString("rol", rol[0]);
+        pref.putString("rol", rol);
         pref.apply();
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////

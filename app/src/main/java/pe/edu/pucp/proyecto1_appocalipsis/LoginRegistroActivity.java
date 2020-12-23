@@ -191,7 +191,7 @@ public class LoginRegistroActivity extends AppCompatActivity {
             }
 
         }else {
-            Toast.makeText(getApplicationContext(),"Error: no se mantuvieron los datos de usuario", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"Ingrese sus credenciales una vez haya verificado su dirección de correo electrónico a través del enlace enviado a " + email, Toast.LENGTH_LONG).show();
         }
     }
 

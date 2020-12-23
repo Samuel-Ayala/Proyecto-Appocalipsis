@@ -41,6 +41,9 @@ public class MasDetalles extends AppCompatActivity {
         stock.setText(String.valueOf(dispositivo.getStock()));
         //imagen.setImageURI((dispositivo.getFoto());
         String aux="";
+
+        /*
+
         for (String i : dispositivo.getCaracteristicas())
         {
             aux+="- "+ i + "\n";
@@ -53,6 +56,8 @@ public class MasDetalles extends AppCompatActivity {
         }
         incluye.setText(aux);
 
+         */
+
         //Funcionalidad reservar
         reservar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +69,7 @@ public class MasDetalles extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

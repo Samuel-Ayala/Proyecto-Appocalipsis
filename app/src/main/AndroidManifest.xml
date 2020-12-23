@@ -30,7 +30,7 @@
         <activity
             android:name=".usuario.ListarDispositivos"
             android:parentActivityName=".usuario.MenuPrincipalUsuario" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginRegistroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -3,12 +3,23 @@ package pe.edu.pucp.proyecto1_appocalipsis.usuario;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
@@ -23,6 +34,33 @@ public class MenuPrincipalUsuario extends AppCompatActivity {
         Button solicitudesReserva = findViewById(R.id.solicitudesDePrestamoMenu);
         Button historialReserva = findViewById(R.id.historialDePrestamoMenu);
         Button cerrarSesion = findViewById(R.id.CerrarSesionMenu);
+
+       ///////////////////////Obtencion de datos de Database y guardado de datos/////////////////////////////////
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = user.getEmail();
+        final String[] rol = new String[1];
+        DatabaseReference userDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
+        userDatabase.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    rol[0] = snapshot.child("rol").getValue().toString();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Error: la base de datos no responde", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        SharedPreferences.Editor pref = getSharedPreferences("Datos", Context.MODE_PRIVATE).edit();
+        pref.putString("email",email);
+        pref.putString("rol", rol[0]);
+        pref.apply();
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         listarDispositivos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +93,23 @@ public class MenuPrincipalUsuario extends AppCompatActivity {
             }
         });
 
+        ///////////////////////////////////////// Cerrar Sesion //////////////////////////////////////////////
+        Button logout;
+        logout = (Button) findViewById(R.id.CerrarSesionMenu);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /////////  Borrado de datos  ///////////////
+                SharedPreferences.Editor pref = getSharedPreferences("Datos", Context.MODE_PRIVATE).edit();
+                pref.clear();
+                pref.apply();
+                FirebaseAuth.getInstance().signOut();
+                onBackPressed();
+            }
+        });
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,4 +141,8 @@ public class MenuPrincipalUsuario extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
 }

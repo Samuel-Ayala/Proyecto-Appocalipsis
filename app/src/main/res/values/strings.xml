@@ -29,4 +29,15 @@
     <string name="listar_dispositivos">Listar Dispositivos</string>
     <string name="historial_de_reservas">Historial de reservas</string>
     <string name="solicitudes_de_reserva">Solicitudes de reserva</string>
+    <string name="subtituloRegistro">A continuación, coloque los datos solicitados para su registro en el sistema. Recuerde verificar su dirección de correo electrónico para finalizar el proceso de registro</string>
+    <string-array name="roles">
+        <item>--- Seleccione su rol ---</item>
+        <item>alumno</item>
+        <item>docente</item>
+        <item>administrador</item>
+        <item>Usuario-TI</item>
+    </string-array>
+    <string name="spinneroles_titulo">Rol</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idspinner"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#202745">
@@ -88,7 +88,8 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:autofillHints="Rol"
-        android:entries="Alumno"
+        android:entries="@array/roles"
+        android:prompt="@string/spinneroles_titulo"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName9"
         app:layout_constraintHorizontal_bias="0.484"
@@ -129,10 +130,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/boton_registro"
         android:text="Cancelar"
         app:layout_constraintEnd_toEndOf="@+id/button4"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
-        android:background="@drawable/boton_registro"/>
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,14 +9,14 @@
     <ImageView
         android:id="@+id/imagenDetalles"
         android:layout_width="0dp"
-        android:layout_height="286dp"
+        android:layout_height="230dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marcaDetalles"
-        app:srcCompat="@android:drawable/btn_dialog"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@android:drawable/btn_dialog" />
 
     <TextView
         android:id="@+id/tipoDetalles"
@@ -55,7 +55,9 @@
         android:id="@+id/caracteristicasDetalles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLines="4"
         android:text="@string/listar_caracteristicas"
+        android:textAlignment="viewStart"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -74,6 +76,7 @@
         android:id="@+id/incluyeDetalles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLines="4"
         android:text="@string/listar_lo_que_incluye"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />

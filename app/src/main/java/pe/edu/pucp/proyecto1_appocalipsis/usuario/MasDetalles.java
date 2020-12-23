@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
@@ -23,6 +25,7 @@ public class MasDetalles extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mas_detalles);
+
         final Intent intent = getIntent();
         final Dispositivo dispositivo = (Dispositivo) intent.getSerializableExtra("Dispositivo");
 
@@ -39,37 +42,21 @@ public class MasDetalles extends AppCompatActivity {
         tipo.setText(dispositivo.getTipo());
         marca.setText(dispositivo.getMarca());
         stock.setText(String.valueOf(dispositivo.getStock()));
-        //imagen.setImageURI((dispositivo.getFoto());
-        String aux="";
-
-        /*
-
-        for (String i : dispositivo.getCaracteristicas())
-        {
-            aux+="- "+ i + "\n";
-        }
-        caracteristicas.setText(aux);
-        aux="";
-        for (String i : dispositivo.getIncluye())
-        {
-            aux+="- "+ i + "\n";
-        }
-        incluye.setText(aux);
-
-         */
+        caracteristicas.setText(dispositivo.getCaracteristicas());
+        incluye.setText(dispositivo.getIncluye());
+        Glide.with(this).load(dispositivo.getImagen()).into(imagen);
 
         //Funcionalidad reservar
         reservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(MasDetalles.this, ReservaDispositivos.class);
-                intent1.putExtra("Disposituvo",dispositivo);
+                intent1.putExtra("Dispositivo",dispositivo);
                 int reqCode = 1;
                 startActivityForResult(intent,reqCode);
             }
         });
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -77,6 +64,7 @@ public class MasDetalles extends AppCompatActivity {
         if(requestCode==1 && resultCode== RESULT_OK)
         {
             Toast.makeText(getApplicationContext(),"Reserva exitosa", Toast.LENGTH_LONG);
+            finish();
         }
     }
 

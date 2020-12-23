@@ -35,7 +35,6 @@ public class MenuPrincipalUsuario extends AppCompatActivity {
         Button listarDispositivos = findViewById(R.id.listaDispositivosMenu);
         Button solicitudesReserva = findViewById(R.id.solicitudesDePrestamoMenu);
         Button historialReserva = findViewById(R.id.historialDePrestamoMenu);
-        Button cerrarSesion = findViewById(R.id.CerrarSesionMenu);
 
        ///////////////////////Obtencion de datos de Database y guardado de datos/////////////////////////////////
 
@@ -82,12 +81,6 @@ public class MenuPrincipalUsuario extends AppCompatActivity {
             }
         });
 
-        cerrarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Hacer lo que se tenga que hacer para cerrar la sesion
-            }
-        });
 
         ///////////////////////////////////////// Cerrar Sesion //////////////////////////////////////////////
         Button logout;

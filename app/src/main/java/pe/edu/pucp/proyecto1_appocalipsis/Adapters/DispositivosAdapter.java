@@ -6,100 +6,92 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
+import pe.edu.pucp.proyecto1_appocalipsis.usuario.ListarDispositivos;
 import pe.edu.pucp.proyecto1_appocalipsis.usuario.MasDetalles;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapter.ViewHolder> {
 
-    private Dispositivo[] dispositivos;
+    private ArrayList<Dispositivo> dispositivos;
     private Context context;
-    private String filtro = null;
-    private String tipoFiltro = null;
+    private ArrayList<StorageReference> imgRef;
 
-    public DispositivosAdapter(Dispositivo[] dispositivos, Context context) {
+
+    public DispositivosAdapter(ArrayList<Dispositivo> dispositivos, Context context, ArrayList<StorageReference> imgRef) {
         this.dispositivos = dispositivos;
         this.context = context;
-    }
-    public DispositivosAdapter(Dispositivo[] dispositivos, Context context,String filtro,String tipo) {
-        this.dispositivos = dispositivos;
-        this.context = context;
-        this.filtro=filtro;
-        this.tipoFiltro =tipo;
+        this.imgRef = imgRef;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.dispositivo,parent,false);
-        ViewHolder viewHolder = new ViewHolder(itemView);
-        return viewHolder;
+        return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Dispositivo dispositivo = dispositivos[position];
-        holder.dispositivo=dispositivo;
-        holder.filtro=filtro;
-        holder.tipo=tipoFiltro;
-        holder.contexto=context;
+        final Dispositivo dispositivo = dispositivos.get(position);
 
+        holder.txtTipo.setText(dispositivo.getTipo());
+        holder.txtMarca.setText(dispositivo.getMarca());
+
+        StorageReference imagen;
+        //obtener la imagen
+        for (StorageReference sr : imgRef)
+        {
+            if (sr.getName().equalsIgnoreCase(dispositivo.getId()))
+            {
+                imagen = sr;
+                dispositivo.setImagen(imagen);
+                //mostrar la imagen
+                Glide.with(context).load(imagen).into(holder.imagen);
+                break;
+            }
+        }
+
+        holder.detalles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MasDetalles.class);
+                intent.putExtra("Dispositivo",dispositivo);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return dispositivos.length;
+        return dispositivos.size();
     }
 
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-
-        Dispositivo dispositivo;
-        Context contexto;
-        String filtro;
-        String tipo;
+        TextView txtMarca;
+        TextView txtTipo;
+        Button detalles;
+        ImageView imagen;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //El filtrado
-            if(tipo.equalsIgnoreCase("m"))
-            {
-                if(!filtro.contains(dispositivo.getMarca())) {
-                    itemView.setVisibility(View.GONE);
-                }
-            }
-            if(tipo.equalsIgnoreCase("t"))
-            {
-                if(!filtro.contains(dispositivo.getTipo())) {
-                    itemView.setVisibility(View.GONE);
-                }
-            }
-
             //Se llena el View Holder
-            TextView txtMarca= itemView.findViewById(R.id.marcaDispositivo);
-            TextView txtTipo = itemView.findViewById(R.id.tipoDispositivo);
-            txtMarca.setText(dispositivo.getMarca());
-            txtTipo.setText(dispositivo.getTipo());
-            //Llenar la imagen
-
-            Button detalles = itemView.findViewById(R.id.detalles);
-            detalles.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(contexto, MasDetalles.class);
-                    intent.putExtra("Dispositivo",dispositivo);
-                    contexto.startActivity(intent);
-                }
-            });
-
+             txtMarca= itemView.findViewById(R.id.marcaDispositivo);
+             txtTipo = itemView.findViewById(R.id.tipoDispositivo);
         }
     }
 

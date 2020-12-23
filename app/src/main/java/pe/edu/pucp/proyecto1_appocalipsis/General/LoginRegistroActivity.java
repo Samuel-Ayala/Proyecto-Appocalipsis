@@ -1,4 +1,4 @@
-package pe.edu.pucp.proyecto1_appocalipsis;
+package pe.edu.pucp.proyecto1_appocalipsis.General;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,12 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,11 +21,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Usuario;
+import pe.edu.pucp.proyecto1_appocalipsis.Fragments.Login_Fragment;
+import pe.edu.pucp.proyecto1_appocalipsis.R;
 import pe.edu.pucp.proyecto1_appocalipsis.admin.MenuPrincipalAdmin;
 import pe.edu.pucp.proyecto1_appocalipsis.usuario.MenuPrincipalUsuario;
 
@@ -120,6 +116,7 @@ public class LoginRegistroActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), MenuPrincipalUsuario.class);
         i.putExtras(params);
         startActivity(i);
+        finish();
     }
 
     public void ingresoExitosoLoginUsuarioTI(String inputEmail, String rol){
@@ -129,6 +126,7 @@ public class LoginRegistroActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), MenuPrincipalAdmin.class);
         i.putExtras(params);
         startActivity(i);
+        finish();
     }
 
 

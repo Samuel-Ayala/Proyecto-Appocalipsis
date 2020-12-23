@@ -1,4 +1,4 @@
-package pe.edu.pucp.proyecto1_appocalipsis;
+package pe.edu.pucp.proyecto1_appocalipsis.Fragments;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Usuario;
+import pe.edu.pucp.proyecto1_appocalipsis.General.LoginRegistroActivity;
+import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 /**
  * A simple {@link Fragment} subclass.

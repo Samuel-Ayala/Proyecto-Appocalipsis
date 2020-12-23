@@ -1,4 +1,4 @@
-package pe.edu.pucp.proyecto1_appocalipsis;
+package pe.edu.pucp.proyecto1_appocalipsis.Fragments;
 
 import android.os.Bundle;
 
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import pe.edu.pucp.proyecto1_appocalipsis.General.LoginRegistroActivity;
+import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,15 +1,25 @@
 package pe.edu.pucp.proyecto1_appocalipsis.Entity;
 
+import com.google.firebase.storage.StorageReference;
+
 import java.io.Serializable;
 
 public class Dispositivo implements Serializable {
     private String id;
     private String tipo;
-    private String foto;
     private String marca;
     private String caracteristicas;
     private String incluye;
+    private StorageReference imagen;
     private int stock;
+
+    public StorageReference getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(StorageReference imagen) {
+        this.imagen = imagen;
+    }
 
     public String getId() {
         return id;
@@ -27,13 +37,6 @@ public class Dispositivo implements Serializable {
         this.tipo = tipo;
     }
 
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
 
     public String getMarca() {
         return marca;

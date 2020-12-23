@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "181317755766",
+    "firebase_url": "https://appocalipsis-default-rtdb.firebaseio.com",
     "project_id": "appocalipsis",
     "storage_bucket": "appocalipsis.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "181317755766-c9sd7uhq908k0e417jfekja46sp4rt90.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.edu.pucp.proyecto1_appocalipsis",
+            "certificate_hash": "2e6b3c92ffbeda801860a9718af98c8c38958489"
+          }
+        },
         {
           "client_id": "181317755766-76bobvd6pc2ombae9p74j8js2cm9uqs5.apps.googleusercontent.com",
           "client_type": 3

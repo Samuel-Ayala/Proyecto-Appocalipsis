@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#C8CFEA"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Registro_Fragment">
+    tools:context=".Fragments.Registro_Fragment">
 
 
     <LinearLayout

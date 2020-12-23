@@ -1,10 +1,5 @@
 package pe.edu.pucp.proyecto1_appocalipsis.usuario;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,28 +10,67 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosAdapter;
+import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class ListarDispositivos extends AppCompatActivity {
 
-    Dispositivo [] dispositivos;
+    ArrayList<Dispositivo> dispositivos=new ArrayList<>();
+    private ArrayList<StorageReference> imgRefs=new ArrayList<>();
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+    StorageReference storage = FirebaseStorage.getInstance().getReference().child("imagenes");
+    String filtroTipo;
+    String filtroMarca;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_dispositivos);
 
-        // Obtener la lista de dispositivos
+        // Obtener la lista de dispositivos inicialmente
+        DatabaseReference referenciaDispositivos = reference.child("dispositivos");
+        referenciaDispositivos.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Dispositivo dispositivo = ds.getValue(Dispositivo.class);
+                    if (dispositivo.getStock() > 0) {
+                        dispositivos.add(dispositivo);
+                        //Se hace referencia a las imagenes pormedio de la llave del dispositivo
+                        imgRefs.add(storage.child(ds.getKey()));
+                    }
+                }
 
-        //Poner los dispositivos en el recycler view
-        DispositivosAdapter dispositivosAdapter = new DispositivosAdapter(dispositivos,ListarDispositivos.this);
-        RecyclerView rv = findViewById(R.id.listaDispositivos);
-        rv.setAdapter(dispositivosAdapter);
-        rv.setLayoutManager(new LinearLayoutManager(ListarDispositivos.this));
+                //Poner los dispositivos en el recycler view
+                DispositivosAdapter dispositivosAdapter = new DispositivosAdapter(dispositivos, ListarDispositivos.this, imgRefs);
+                listarEnRV(dispositivosAdapter);
+
+                //Se configura el filtro de marcas
+                configurarFiltroMarcas();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //Activar el filtro de tipo
         ImageView lupa = findViewById(R.id.lupa);
@@ -44,53 +78,80 @@ public class ListarDispositivos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TextView tv = findViewById(R.id.filtroTipo);
-                String filtro = tv.getText().toString();
-                DispositivosAdapter dispositivosAdapter = new DispositivosAdapter(dispositivos,ListarDispositivos.this,filtro,"t");
-                RecyclerView rv = findViewById(R.id.listaDispositivos);
-                rv.setAdapter(dispositivosAdapter);
-                rv.setLayoutManager(new LinearLayoutManager(ListarDispositivos.this));
+                filtroTipo = tv.getText().toString();
+                listarEnRV(filtrado());
             }
         });
 
 
+    }
+
+    public void configurarFiltroMarcas()
+    {
         //Activar el filtro de marca
-        ArrayList<String> marcas=new ArrayList<>(); //Se crea el arreglo de las posibles marcas
+        ArrayList<String> marcas = new ArrayList<>(); //Se crea el arreglo de las posibles marcas
         marcas.add("Seleccione una marca del dispositivo"); //Situación inicial
-        for (Dispositivo i:dispositivos) //Se recorre para var las marcas de todos los dispositivos
+        for (Dispositivo i : dispositivos) //Se recorre para var las marcas de todos los dispositivos
         {
-            boolean repite=false;
+            boolean repite = false;
             for (String j : marcas) //Con esto se evita la repeticion de marcas
             {
-                if(i.getMarca().equals(j)) repite=true;
+                if (i.getMarca().equals(j)) repite = true;
             }
             if (!repite) marcas.add(i.getMarca());  //Se asigna solo si es una nueva marca
         }
-            //String[] marcaArreglo = (String[]) marcas.toArray();
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,marcas);
-        Spinner spinner = findViewById(R.id.filtroMarca);
-        spinner.setAdapter(adapter); //Se pone en la vista
 
+        //Se crea y agrega el adapter
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(ListarDispositivos.this, android.R.layout.simple_spinner_dropdown_item, marcas);
+        Spinner spinner = findViewById(R.id.filtroMarca);
+        spinner.setAdapter(adapter);
+
+        //se activa el listener de selección
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getSelectedItem();
-                if(item != null) {
-                    String marca = item.toString();
-                    DispositivosAdapter dispositivosAdapter =
-                            new DispositivosAdapter(dispositivos,ListarDispositivos.this,marca,"m");
-                    RecyclerView rv = findViewById(R.id.listaDispositivos);
-                    rv.setAdapter(dispositivosAdapter);
-                    rv.setLayoutManager(new LinearLayoutManager(ListarDispositivos.this));
+                if (item != null) {
+                    if (position==0) filtroMarca=null;
+                    else filtroMarca = item.toString();
+                    listarEnRV(filtrado());
                 }
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
+    }
 
+    //para realizar el filtrado
+    public DispositivosAdapter filtrado()
+    {
+        ArrayList<Dispositivo> listaFiltrada = (ArrayList<Dispositivo>) dispositivos.clone();
+
+        if(filtroMarca != null)
+        {
+            for (Dispositivo i : dispositivos) if (!i.getMarca().equalsIgnoreCase(filtroMarca)) listaFiltrada.remove(i);
+        }
+
+        if(filtroTipo != null)
+        {
+            for (Dispositivo i : dispositivos) if (!i.getTipo().contains(filtroTipo)) listaFiltrada.remove(i);
+        }
+        //caso no se encuentren resultados
+        if (listaFiltrada.size()==0) findViewById(R.id.ceroResults).setVisibility(View.VISIBLE);
+        else findViewById(R.id.ceroResults).setVisibility(View.GONE);
+
+        DispositivosAdapter dispositivosAdapter = new DispositivosAdapter(listaFiltrada,ListarDispositivos.this,imgRefs);
+        return dispositivosAdapter;
+    }
+
+    //Para listar en el RV
+    public void listarEnRV(DispositivosAdapter dispositivosAdapter)
+    {
+        RecyclerView rv = findViewById(R.id.listaDispositivos);
+        rv.setAdapter(dispositivosAdapter);
+        rv.setLayoutManager(new LinearLayoutManager(ListarDispositivos.this));
     }
 
     @Override

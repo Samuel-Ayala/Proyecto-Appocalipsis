@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pe.edu.pucp.proyecto1_appocalipsis">
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -30,7 +31,7 @@
         <activity
             android:name=".usuario.ListarDispositivos"
             android:parentActivityName=".usuario.MenuPrincipalUsuario" />
-        <activity android:name=".LoginRegistroActivity">
+        <activity android:name=".General.LoginRegistroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

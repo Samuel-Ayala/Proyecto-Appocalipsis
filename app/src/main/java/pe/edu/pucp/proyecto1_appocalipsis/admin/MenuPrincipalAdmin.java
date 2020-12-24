@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,5 +65,19 @@ public class MenuPrincipalAdmin extends AppCompatActivity {
             }
         });
         //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////// IR A GESTION DE DISPOSITIVOS /////////////////////////////////////////
+
+        Button buttonGestionarDispositivos = (Button) findViewById(R.id.gestionar);
+        buttonGestionarDispositivos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GestionarDispositivos.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

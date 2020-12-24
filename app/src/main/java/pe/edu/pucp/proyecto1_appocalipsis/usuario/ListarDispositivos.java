@@ -59,7 +59,7 @@ public class ListarDispositivos extends AppCompatActivity {
                 }
 
                 //Poner los dispositivos en el recycler view
-                DispositivosAdapter dispositivosAdapter = new DispositivosAdapter(dispositivos, ListarDispositivos.this, imgRefs);
+                DispositivosAdapter dispositivosAdapter = new DispositivosAdapter(dispositivos, ListarDispositivos.this);
                 listarEnRV(dispositivosAdapter);
 
                 //Se configura el filtro de marcas
@@ -142,7 +142,7 @@ public class ListarDispositivos extends AppCompatActivity {
         if (listaFiltrada.size()==0) findViewById(R.id.ceroResults).setVisibility(View.VISIBLE);
         else findViewById(R.id.ceroResults).setVisibility(View.GONE);
 
-        DispositivosAdapter dispositivosAdapter = new DispositivosAdapter(listaFiltrada,ListarDispositivos.this,imgRefs);
+        DispositivosAdapter dispositivosAdapter = new DispositivosAdapter(listaFiltrada,ListarDispositivos.this);
         return dispositivosAdapter;
     }
 

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -21,16 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosAdapter;
+import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosITAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
-import pe.edu.pucp.proyecto1_appocalipsis.General.LoginRegistroActivity;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
-import pe.edu.pucp.proyecto1_appocalipsis.usuario.MenuPrincipalUsuario;
 
 public class GestionarDispositivos extends AppCompatActivity {
 
     private RecyclerView recyclerViewDispo;
-    private DispositivosAdapter dispositivosAdapter;
+    private DispositivosITAdapter dispositivosITAdapter;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +53,8 @@ public class GestionarDispositivos extends AppCompatActivity {
         recyclerViewDispo = findViewById(R.id.recyclerDispositivosUsuarioTI);
         recyclerViewDispo.setLayoutManager(new LinearLayoutManager(GestionarDispositivos.this));
 
-        dispositivosAdapter = new DispositivosAdapter(obtenerListaDispositivos(),GestionarDispositivos.this);
-        recyclerViewDispo.setAdapter(dispositivosAdapter);
+        dispositivosITAdapter = new DispositivosITAdapter(obtenerListaDispositivos(),GestionarDispositivos.this);
+        recyclerViewDispo.setAdapter(dispositivosITAdapter);
 
         //////////////////////////////////////////////////////////////////////////////////////////////
     }
@@ -100,7 +97,7 @@ public class GestionarDispositivos extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getApplicationContext(), "Error inesperado", Toast.LENGTH_SHORT).show();
             }
         });
 

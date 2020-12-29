@@ -29,7 +29,7 @@ import pe.edu.pucp.proyecto1_appocalipsis.usuario.ListarDispositivos;
 import pe.edu.pucp.proyecto1_appocalipsis.usuario.MasDetalles;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
-public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapter.ViewHolder> {
+public class DispositivosUserAdapter extends RecyclerView.Adapter<DispositivosUserAdapter.ViewHolder> {
 
     private final List<Dispositivo> listaDispositivos;
     private Context context;
@@ -51,25 +51,13 @@ public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapte
             txtCaracteristicas = itemView.findViewById(R.id.caracteristicaEnLista);
             txtIncluye = itemView.findViewById(R.id.incluyeEnLista);
             txtStock = itemView.findViewById(R.id.stockEnLista);
-            editarDispositivo = itemView.findViewById(R.id.editarDispositivo);
-            eliminarDispositivo = itemView.findViewById(R.id.eliminarDispositivo);
-            //detalles = itemView.findViewById(R.id.detalles);
+            detalles = itemView.findViewById(R.id.detalles);
         }
     }
 
-    /*public List<Dispositivo> listaDispositivos;
-
-    public DispositivosAdapter(List<Dispositivo> listaDispositivos){
+    public DispositivosUserAdapter(List<Dispositivo> listaDispositivos){
         this.listaDispositivos = listaDispositivos;
     }
-
-     */
-
-    public DispositivosAdapter(List<Dispositivo> listaDispositivos, Context context) {
-        this.listaDispositivos = listaDispositivos;
-        this.context = context;
-    }
-
 
 
     @NonNull
@@ -91,21 +79,19 @@ public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapte
 
         Glide.with(context).load(dispositivo.getImagen()).into(holder.imagenDispositivo);
 
-        /*StorageReference imagen;
+        StorageReference imagen;
         //obtener la imagen
         for (StorageReference sr : imgRef)
         {
             if (sr.getName().equalsIgnoreCase(dispositivo.getTipo()))
             {
                 imagen = sr;
-                dispositivo.setImagen(imagen);
+                //dispositivo.setImagen(imagen);
                 //mostrar la imagen
                 Glide.with(context).load(imagen).into(holder.imagenDispositivo);
                 break;
             }
         }
-
-         */
 
         holder.detalles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,29 +99,6 @@ public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapte
                 Intent intent = new Intent(context, MasDetalles.class);
                 intent.putExtra("Dispositivo",dispositivo);
                 context.startActivity(intent);
-            }
-        });
-
-        holder.editarDispositivo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, EditarDispositivo.class);
-                intent.putExtra("Dispositivo",dispositivo);
-                context.startActivity(intent);
-            }
-        });
-
-        holder.eliminarDispositivo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /// ELIMINAMOS REFERENCIA DE REALTIME DATABASE
-                DatabaseReference deviceDatabase = FirebaseDatabase.getInstance().getReference().child("dispositivos");
-                String nombreCarpetaDispositivo = dispositivo.getTipo() + "-" + dispositivo.getMarca() + "-" + dispositivo.getCaracteristicas() + "-" + dispositivo.getStock();
-                deviceDatabase.child(nombreCarpetaDispositivo).removeValue();
-
-                /// ELIMINAMOS REFERENCIA DE STORAGE
-                StorageReference stReference = FirebaseStorage.getInstance().getReference().child("fotos");
-                stReference.child(nombreCarpetaDispositivo).delete();
             }
         });
     }

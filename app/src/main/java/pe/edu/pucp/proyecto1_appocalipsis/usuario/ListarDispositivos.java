@@ -28,6 +28,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosITAdapter;
+import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosUserAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
@@ -59,8 +60,8 @@ public class ListarDispositivos extends AppCompatActivity {
                 }
 
                 //Poner los dispositivos en el recycler view
-                DispositivosITAdapter dispositivosITAdapter = new DispositivosITAdapter(dispositivos, ListarDispositivos.this);
-                listarEnRV(dispositivosITAdapter);
+                DispositivosUserAdapter dispositivosUserAdapter = new DispositivosUserAdapter(dispositivos, ListarDispositivos.this);
+                listarEnRV(dispositivosUserAdapter);
 
                 //Se configura el filtro de marcas
                 configurarFiltroMarcas();
@@ -125,7 +126,7 @@ public class ListarDispositivos extends AppCompatActivity {
     }
 
     //para realizar el filtrado
-    public DispositivosITAdapter filtrado()
+    public DispositivosUserAdapter filtrado()
     {
         ArrayList<Dispositivo> listaFiltrada = (ArrayList<Dispositivo>) dispositivos.clone();
 
@@ -142,15 +143,15 @@ public class ListarDispositivos extends AppCompatActivity {
         if (listaFiltrada.size()==0) findViewById(R.id.ceroResults).setVisibility(View.VISIBLE);
         else findViewById(R.id.ceroResults).setVisibility(View.GONE);
 
-        DispositivosITAdapter dispositivosITAdapter = new DispositivosITAdapter(listaFiltrada,ListarDispositivos.this);
-        return dispositivosITAdapter;
+        DispositivosUserAdapter dispositivosUserAdapter = new DispositivosUserAdapter(listaFiltrada,ListarDispositivos.this);
+        return dispositivosUserAdapter;
     }
 
     //Para listar en el RV
-    public void listarEnRV(DispositivosITAdapter dispositivosITAdapter)
+    public void listarEnRV(DispositivosUserAdapter dispositivosUserAdapter)
     {
         RecyclerView rv = findViewById(R.id.listaDispositivos);
-        rv.setAdapter(dispositivosITAdapter);
+        rv.setAdapter(dispositivosUserAdapter);
         rv.setLayoutManager(new LinearLayoutManager(ListarDispositivos.this));
     }
 

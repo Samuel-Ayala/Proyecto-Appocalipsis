@@ -46,17 +46,18 @@ public class DispositivosUserAdapter extends RecyclerView.Adapter<DispositivosUs
 
             //Se llena el View Holder
             imagenDispositivo = itemView.findViewById(R.id.imgDispositivo);
-            txtMarca= itemView.findViewById(R.id.marcaEnLista);
-            txtTipo = itemView.findViewById(R.id.tipoEnLista);
-            txtCaracteristicas = itemView.findViewById(R.id.caracteristicaEnLista);
-            txtIncluye = itemView.findViewById(R.id.incluyeEnLista);
-            txtStock = itemView.findViewById(R.id.stockEnLista);
+            txtMarca= itemView.findViewById(R.id.marcaDispositivo);
+            txtTipo = itemView.findViewById(R.id.tipoDispositivo);
+            txtCaracteristicas = itemView.findViewById(R.id.caracteristicasDispositivo);
+            txtIncluye = itemView.findViewById(R.id.incluyeDetalles);
+            txtStock = itemView.findViewById(R.id.stockDispositivo);
             detalles = itemView.findViewById(R.id.detalles);
         }
     }
 
-    public DispositivosUserAdapter(List<Dispositivo> listaDispositivos){
+    public DispositivosUserAdapter(List<Dispositivo> listaDispositivos, Context context) {
         this.listaDispositivos = listaDispositivos;
+        this.context = context;
     }
 
 

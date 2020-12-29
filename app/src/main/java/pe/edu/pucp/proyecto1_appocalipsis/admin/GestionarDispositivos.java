@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import java.util.List;
 import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosITAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
+import pe.edu.pucp.proyecto1_appocalipsis.usuario.ListarDispositivos;
 
 public class GestionarDispositivos extends AppCompatActivity {
 
@@ -51,10 +53,10 @@ public class GestionarDispositivos extends AppCompatActivity {
         /////////////////////////// LISTAR DISPOSITIVOS ////////////////////////////////
 
         recyclerViewDispo = findViewById(R.id.recyclerDispositivosUsuarioTI);
-        recyclerViewDispo.setLayoutManager(new LinearLayoutManager(GestionarDispositivos.this));
 
         dispositivosITAdapter = new DispositivosITAdapter(obtenerListaDispositivos(),GestionarDispositivos.this);
         recyclerViewDispo.setAdapter(dispositivosITAdapter);
+        recyclerViewDispo.setLayoutManager(new LinearLayoutManager(GestionarDispositivos.this));
 
         //////////////////////////////////////////////////////////////////////////////////////////////
     }
@@ -74,8 +76,8 @@ public class GestionarDispositivos extends AppCompatActivity {
 
                         Dispositivo d = new Dispositivo();
 
-                        String caract = data.child("caracteristicas").getValue().toString();
                         String urlFoto = data.child("foto").getValue().toString();
+                        String caract = data.child("caracteristicas").getValue().toString();
                         String incluye = data.child("incluye").getValue().toString();
                         String marca = data.child("marca").getValue().toString();
                         String stock = data.child("stock").getValue().toString();
@@ -89,6 +91,7 @@ public class GestionarDispositivos extends AppCompatActivity {
                         d.setTipo(tipo);
 
                         listaDispos.add(d);
+
                     }
                 }else {
                     Toast.makeText(getApplicationContext(), "No hay dispositivos en el inventario", Toast.LENGTH_SHORT).show();

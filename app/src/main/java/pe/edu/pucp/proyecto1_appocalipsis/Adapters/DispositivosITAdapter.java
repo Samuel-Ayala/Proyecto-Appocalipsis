@@ -17,10 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.admin.EditarDispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
@@ -29,12 +26,10 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
 
     private final List<Dispositivo> listaDispositivos;
     private Context context;
-    private ArrayList<StorageReference> imgRef;
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtMarca, txtTipo, txtCaracteristicas, txtIncluye, txtStock;
-        Button detalles, editarDispositivo, eliminarDispositivo;
+        Button editarDispositivo, eliminarDispositivo;
         ImageView imagenDispositivo;
 
         public ViewHolder(@NonNull View itemView) {
@@ -49,29 +44,18 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
             txtStock = itemView.findViewById(R.id.stockEnLista);
             editarDispositivo = itemView.findViewById(R.id.editarDispositivo);
             eliminarDispositivo = itemView.findViewById(R.id.eliminarDispositivo);
-            //detalles = itemView.findViewById(R.id.detalles);
         }
     }
-
-    /*public List<Dispositivo> listaDispositivos;
-
-    public DispositivosAdapter(List<Dispositivo> listaDispositivos){
-        this.listaDispositivos = listaDispositivos;
-    }
-
-     */
 
     public DispositivosITAdapter(List<Dispositivo> listaDispositivos, Context context) {
         this.listaDispositivos = listaDispositivos;
         this.context = context;
     }
 
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.dispositivo,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_dispositivo,parent,false);
         return new ViewHolder(itemView);
     }
 
@@ -86,34 +70,6 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
         holder.txtStock.setText(dispositivo.getStock());
 
         Glide.with(context).load(dispositivo.getImagen()).into(holder.imagenDispositivo);
-
-        /*StorageReference imagen;
-        //obtener la imagen
-        for (StorageReference sr : imgRef)
-        {
-            if (sr.getName().equalsIgnoreCase(dispositivo.getTipo()))
-            {
-                imagen = sr;
-                dispositivo.setImagen(imagen);
-                //mostrar la imagen
-                Glide.with(context).load(imagen).into(holder.imagenDispositivo);
-                break;
-            }
-        }
-
-         */
-
-        /*
-        holder.detalles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MasDetalles.class);
-                intent.putExtra("Dispositivo",dispositivo);
-                context.startActivity(intent);
-            }
-        });
-
-         */
 
         holder.editarDispositivo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +99,4 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
     public int getItemCount() {
         return listaDispositivos.size();
     }
-
-
-
 }

@@ -2,6 +2,7 @@ package pe.edu.pucp.proyecto1_appocalipsis.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
+import pe.edu.pucp.proyecto1_appocalipsis.admin.EditarDispositivo;
+import pe.edu.pucp.proyecto1_appocalipsis.admin.GestionarDispositivos;
 import pe.edu.pucp.proyecto1_appocalipsis.usuario.ListarDispositivos;
 import pe.edu.pucp.proyecto1_appocalipsis.usuario.MasDetalles;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
@@ -32,7 +38,7 @@ public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtMarca, txtTipo, txtCaracteristicas, txtIncluye, txtStock;
-        Button detalles;
+        Button detalles, editarDispositivo, eliminarDispositivo;
         ImageView imagenDispositivo;
 
         public ViewHolder(@NonNull View itemView) {
@@ -45,6 +51,9 @@ public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapte
             txtCaracteristicas = itemView.findViewById(R.id.caracteristicaEnLista);
             txtIncluye = itemView.findViewById(R.id.incluyeEnLista);
             txtStock = itemView.findViewById(R.id.stockEnLista);
+            editarDispositivo = itemView.findViewById(R.id.editarDispositivo);
+            eliminarDispositivo = itemView.findViewById(R.id.eliminarDispositivo);
+            //detalles = itemView.findViewById(R.id.detalles);
         }
     }
 
@@ -66,7 +75,7 @@ public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.dispositivo,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.dispositivo,parent,false);
         return new ViewHolder(itemView);
     }
 
@@ -104,6 +113,29 @@ public class DispositivosAdapter extends RecyclerView.Adapter<DispositivosAdapte
                 Intent intent = new Intent(context, MasDetalles.class);
                 intent.putExtra("Dispositivo",dispositivo);
                 context.startActivity(intent);
+            }
+        });
+
+        holder.editarDispositivo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditarDispositivo.class);
+                intent.putExtra("Dispositivo",dispositivo);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.eliminarDispositivo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /// ELIMINAMOS REFERENCIA DE REALTIME DATABASE
+                DatabaseReference deviceDatabase = FirebaseDatabase.getInstance().getReference().child("dispositivos");
+                String nombreCarpetaDispositivo = dispositivo.getTipo() + "-" + dispositivo.getMarca() + "-" + dispositivo.getCaracteristicas() + "-" + dispositivo.getStock();
+                deviceDatabase.child(nombreCarpetaDispositivo).removeValue();
+
+                /// ELIMINAMOS REFERENCIA DE STORAGE
+                StorageReference stReference = FirebaseStorage.getInstance().getReference().child("fotos");
+                stReference.child(nombreCarpetaDispositivo).delete();
             }
         });
     }

@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -79,7 +80,7 @@ public class AgregarDispositivo extends AppCompatActivity {
         agregarDispositivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String nombreCarpetaDispositivo = tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + dateString;
+                final String nombreCarpetaDispositivo = tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString();
 
                 if (rutaDeArchivo != null){
                     StorageReference stReference = FirebaseStorage.getInstance().getReference();
@@ -103,6 +104,11 @@ public class AgregarDispositivo extends AppCompatActivity {
                             currentUserDB.child("incluye").setValue(incluye.getText().toString());
                             currentUserDB.child("stock").setValue(stock.getText().toString());
                             currentUserDB.child("foto").setValue(downloadLink.toString());
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            Toast.makeText(getApplicationContext(), "Dispositivo agregado al inventario", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

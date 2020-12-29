@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,10 +54,12 @@ public class GestionarDispositivos extends AppCompatActivity {
         /////////////////////////// LISTAR DISPOSITIVOS ////////////////////////////////
 
         recyclerViewDispo = findViewById(R.id.recyclerDispositivosUsuarioTI);
-        recyclerViewDispo.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewDispo.setLayoutManager(new LinearLayoutManager(GestionarDispositivos.this));
 
         dispositivosAdapter = new DispositivosAdapter(obtenerListaDispositivos(),GestionarDispositivos.this);
         recyclerViewDispo.setAdapter(dispositivosAdapter);
+
+        //////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     private List<Dispositivo> obtenerListaDispositivos() {
@@ -68,25 +71,30 @@ public class GestionarDispositivos extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot data : snapshot.getChildren()){
+                if (snapshot.exists()) {
+                    Toast.makeText(getApplicationContext(), "se muestra la lista", Toast.LENGTH_SHORT).show();
+                    for (DataSnapshot data : snapshot.getChildren()) {
 
-                    Dispositivo d = new Dispositivo();
+                        Dispositivo d = new Dispositivo();
 
-                    String caract = data.child("caracteristicas").getValue().toString();
-                    String urlFoto = data.child("foto").getValue().toString();
-                    String incluye = data.child("incluye").getValue().toString();
-                    String marca = data.child("marca").getValue().toString();
-                    String stock = data.child("stock").getValue().toString();
-                    String tipo = data.child("tipo").getValue().toString();
+                        String caract = data.child("caracteristicas").getValue().toString();
+                        String urlFoto = data.child("foto").getValue().toString();
+                        String incluye = data.child("incluye").getValue().toString();
+                        String marca = data.child("marca").getValue().toString();
+                        String stock = data.child("stock").getValue().toString();
+                        String tipo = data.child("tipo").getValue().toString();
 
-                    d.setCaracteristicas(caract);
-                    d.setImagen(urlFoto);
-                    d.setIncluye(incluye);
-                    d.setMarca(marca);
-                    d.setStock(Integer.parseInt(stock));
-                    d.setTipo(tipo);
+                        d.setCaracteristicas(caract);
+                        d.setImagen(urlFoto);
+                        d.setIncluye(incluye);
+                        d.setMarca(marca);
+                        d.setStock(Integer.parseInt(stock));
+                        d.setTipo(tipo);
 
-                    listaDispos.add(d);
+                        listaDispos.add(d);
+                    }
+                }else {
+                    Toast.makeText(getApplicationContext(), "No hay dispositivos en el inventario", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -53,8 +53,6 @@ public class AgregarDispositivo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_dispositivo);
 
-        // Creando carpeta dispositivos (solo la primera vez) y agregando dispositivos a esta
-
         final EditText marca, caracteristicas, incluye, stock;
         final Button agregarDispositivo, cargarFoto, tomarFoto;
         final Spinner tipo;

@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,7 +66,7 @@ public class EditarDispositivo extends AppCompatActivity {
         caracteristicas = (EditText) findViewById(R.id.caracteristicasDispositivoEdit);
         incluye = (EditText) findViewById(R.id.incluyeDispositivoEdit);
         stock = (EditText) findViewById(R.id.stockDispositivoEdit);
-        imagenDispositivo = (ImageView) findViewById(R.id.imagenDeDispositivoAAgregar);
+        imagenDispositivo = (ImageView) findViewById(R.id.imagenDeDispositivoAAgregarEdit);
 
         /////// LLENADO DE DATOS A LA VISTA DE ACTUALIZAR //////////////
 
@@ -73,6 +74,7 @@ public class EditarDispositivo extends AppCompatActivity {
         stock.setText(String.valueOf(dispositivo.getStock()));
         caracteristicas.setText(dispositivo.getCaracteristicas());
         incluye.setText(dispositivo.getIncluye());
+        Log.d("ACTUALIZAR", dispositivo.getMarca()+dispositivo.getImagen()+String.valueOf(dispositivo.getStock())+dispositivo.getCaracteristicas()+dispositivo.getIncluye());
         Glide.with(this).load(dispositivo.getImagen()).into(imagenDispositivo);
 
         //////////////////////////////////////////////////////////////////////////////

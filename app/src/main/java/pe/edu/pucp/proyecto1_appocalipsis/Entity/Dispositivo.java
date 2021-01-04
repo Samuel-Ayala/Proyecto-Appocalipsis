@@ -5,29 +5,14 @@ import com.google.firebase.storage.StorageReference;
 import java.io.Serializable;
 
 public class Dispositivo implements Serializable {
-    private String id;
     private String tipo;
     private String marca;
     private String caracteristicas;
     private String incluye;
-    private StorageReference imagen;
+    private String imagen;
     private int stock;
 
-    public StorageReference getImagen() {
-        return imagen;
-    }
 
-    public void setImagen(StorageReference imagen) {
-        this.imagen = imagen;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTipo() {
         return tipo;
@@ -68,5 +53,13 @@ public class Dispositivo implements Serializable {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

@@ -65,7 +65,6 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Dispositivo dispositivo = listaDispositivos.get(position);
 
-        //Log.d("ADAPTER IT",dispositivo.getTipo() + dispositivo.getMarca() + dispositivo.getCaracteristicas() + dispositivo.getIncluye() + dispositivo.getStock());
         holder.txtTipo.setText(dispositivo.getTipo());
         holder.txtMarca.setText(dispositivo.getMarca());
         holder.txtCaracteristicas.setText(dispositivo.getCaracteristicas());

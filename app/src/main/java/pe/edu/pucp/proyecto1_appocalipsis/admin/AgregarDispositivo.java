@@ -103,6 +103,12 @@ public class AgregarDispositivo extends AppCompatActivity {
                             currentUserDB.child("incluye").setValue(incluye.getText().toString());
                             currentUserDB.child("stock").setValue(stock.getText().toString());
                             currentUserDB.child("foto").setValue(downloadLink.toString());
+
+                            Dispositivo d = new Dispositivo();
+                            d.setTipo(tipo.getSelectedItem().toString());
+                            d.setStock(Integer.parseInt(stock.getText().toString()));
+                            d.setMarca(marca.getText().toString());
+                            d.setIncluye(incluye.getText().toString());
                         }
                     }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override

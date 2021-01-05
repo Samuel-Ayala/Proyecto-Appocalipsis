@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -73,7 +72,7 @@ public class EditarDispositivo extends AppCompatActivity {
         stock.setText(String.valueOf(dispositivo.getStock()));
         caracteristicas.setText(dispositivo.getCaracteristicas());
         incluye.setText(dispositivo.getIncluye());
-        Glide.with(this).load(dispositivo.getImagen()).into(imagenDispositivo);
+        Glide.with(this).load(dispositivo.getFoto()).into(imagenDispositivo);
 
         //////////////////////////////////////////////////////////////////////////////
 

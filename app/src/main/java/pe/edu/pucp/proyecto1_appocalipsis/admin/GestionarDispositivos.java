@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ import java.util.List;
 import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosITAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
-import pe.edu.pucp.proyecto1_appocalipsis.usuario.ListarDispositivos;
 
 public class GestionarDispositivos extends AppCompatActivity {
 
@@ -84,7 +82,7 @@ public class GestionarDispositivos extends AppCompatActivity {
                         String tipo = data.child("tipo").getValue().toString();
 
                         d.setCaracteristicas(caract);
-                        d.setImagen(urlFoto);
+                        d.setFoto(urlFoto);
                         d.setIncluye(incluye);
                         d.setMarca(marca);
                         d.setStock(Integer.parseInt(stock));

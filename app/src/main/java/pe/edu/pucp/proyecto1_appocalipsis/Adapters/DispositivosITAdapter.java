@@ -69,7 +69,7 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
         holder.txtIncluye.setText(dispositivo.getIncluye());
         holder.txtStock.setText(dispositivo.getStock());
 
-        Glide.with(context).load(dispositivo.getImagen()).into(holder.imagenDispositivo);
+        Glide.with(context).load(dispositivo.getFoto()).into(holder.imagenDispositivo);
 
         holder.editarDispositivo.setOnClickListener(new View.OnClickListener() {
             @Override

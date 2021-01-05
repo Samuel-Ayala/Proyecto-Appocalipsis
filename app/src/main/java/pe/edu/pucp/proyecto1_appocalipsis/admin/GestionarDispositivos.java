@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -26,7 +27,6 @@ import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class GestionarDispositivos extends AppCompatActivity {
 
-    private RecyclerView recyclerViewDispo;
     private DispositivosITAdapter dispositivosITAdapter;
     
     @Override
@@ -34,6 +34,7 @@ public class GestionarDispositivos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestionar_dispositivos);
 
+        listarDispositivos();
         ////////////////////////////// IR A AGREGAR DISPOSITIVO /////////////////////////////////////////
 
         Button buttonIrAAgregarDispositivos = (Button) findViewById(R.id.agregarDispositivo);
@@ -45,21 +46,9 @@ public class GestionarDispositivos extends AppCompatActivity {
                 finish();
             }
         });
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        /////////////////////////// LISTAR DISPOSITIVOS ////////////////////////////////
-
-        recyclerViewDispo = findViewById(R.id.recyclerDispositivosUsuarioTI);
-
-        dispositivosITAdapter = new DispositivosITAdapter(obtenerListaDispositivos(),GestionarDispositivos.this);
-        recyclerViewDispo.setAdapter(dispositivosITAdapter);
-        recyclerViewDispo.setLayoutManager(new LinearLayoutManager(GestionarDispositivos.this));
-
-        //////////////////////////////////////////////////////////////////////////////////////////////
     }
 
-    private List<Dispositivo> obtenerListaDispositivos() {
+    private void listarDispositivos() {
 
         final List<Dispositivo> listaDispos = new ArrayList<>();
 
@@ -69,7 +58,7 @@ public class GestionarDispositivos extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists()) {
-                    Toast.makeText(getApplicationContext(), "se muestra la lista", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "se muestra la lista", Toast.LENGTH_SHORT).show();
                     for (DataSnapshot data : snapshot.getChildren()) {
 
                         Dispositivo d = new Dispositivo();
@@ -89,8 +78,10 @@ public class GestionarDispositivos extends AppCompatActivity {
                         d.setTipo(tipo);
 
                         listaDispos.add(d);
-
+                        Log.d("INFO APP GESTIONAR",d.getMarca());
                     }
+                    dispositivosITAdapter = new DispositivosITAdapter(listaDispos,GestionarDispositivos.this);
+                    listarEnRV(dispositivosITAdapter);
                 }else {
                     Toast.makeText(getApplicationContext(), "No hay dispositivos en el inventario", Toast.LENGTH_SHORT).show();
                 }
@@ -101,7 +92,11 @@ public class GestionarDispositivos extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error inesperado", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-        return listaDispos;
+    private void listarEnRV(DispositivosITAdapter dispositivosITAdapter) {
+        RecyclerView rv = findViewById(R.id.recyclerDispositivosUsuarioTI);
+        rv.setAdapter(dispositivosITAdapter);
+        rv.setLayoutManager(new LinearLayoutManager(GestionarDispositivos.this));
     }
 }

@@ -46,14 +46,13 @@ import pe.edu.pucp.proyecto1_appocalipsis.R;
 public class AgregarDispositivo extends AppCompatActivity {
 
     private Uri rutaDeArchivo;
+    private byte[] imbytes;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_dispositivo);
-
-        // Creando carpeta dispositivos (solo la primera vez) y agregando dispositivos a esta
 
         final EditText marca, caracteristicas, incluye, stock;
         final Button agregarDispositivo, cargarFoto, tomarFoto;
@@ -130,28 +129,11 @@ public class AgregarDispositivo extends AppCompatActivity {
             public void onClick(View v) {
                 if (AgregarDispositivo.this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
                     int permiso = ContextCompat.checkSelfPermission(AgregarDispositivo.this, Manifest.permission.CAMERA);
-                    int permiso2 = ContextCompat.checkSelfPermission(AgregarDispositivo.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                    int permiso3 = ContextCompat.checkSelfPermission(AgregarDispositivo.this, Manifest.permission.READ_EXTERNAL_STORAGE);
-
                     if (permiso == PackageManager.PERMISSION_GRANTED) {
                         tomarFoto();
                     } else {
                         ActivityCompat.requestPermissions(AgregarDispositivo.this, new String[]{Manifest.permission.CAMERA},3);
                     }
-
-                    if (permiso2 == PackageManager.PERMISSION_GRANTED) {
-                        tomarFoto();
-                    } else {
-                        ActivityCompat.requestPermissions(AgregarDispositivo.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},3);
-                    }
-
-                    if (permiso3 == PackageManager.PERMISSION_GRANTED) {
-                        tomarFoto();
-                    } else {
-                        ActivityCompat.requestPermissions(AgregarDispositivo.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},3);
-                    }
-
-
                 }else {
                     Toast.makeText(getApplicationContext(), "Error: este dispositivo no tiene camara", Toast.LENGTH_SHORT).show();
                 }
@@ -179,12 +161,13 @@ public class AgregarDispositivo extends AppCompatActivity {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),rutaDeArchivo);
                 ImageView imagenDispositivo = (ImageView) findViewById(R.id.imagenDeDispositivoAAgregar);
                 imagenDispositivo.setImageBitmap(bitmap);
+                imbytes=null;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        if (requestCode == 2 && data != null && data.getData() != null){
+        if (requestCode == 2){
             try {
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -195,7 +178,8 @@ public class AgregarDispositivo extends AppCompatActivity {
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 assert imageBitmap != null;
                 imageBitmap.compress(Bitmap.CompressFormat.PNG,0,bos);
-                byte[] imbytes = bos.toByteArray();
+                imbytes = bos.toByteArray();
+                rutaDeArchivo=null;
                 imagenDispositivo.setVisibility(View.VISIBLE);
 
             }catch (Exception e){

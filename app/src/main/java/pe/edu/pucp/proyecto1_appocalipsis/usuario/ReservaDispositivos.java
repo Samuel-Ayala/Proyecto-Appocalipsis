@@ -1,6 +1,7 @@
 package pe.edu.pucp.proyecto1_appocalipsis.usuario;
 
 import android.Manifest;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -22,8 +23,12 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.LocationSource;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,7 +44,7 @@ import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Usuario;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
-public class ReservaDispositivos extends AppCompatActivity {
+public class ReservaDispositivos extends AppCompatActivity implements OnMapReadyCallback{
 
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -50,6 +55,7 @@ public class ReservaDispositivos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserva_dispositivos);
+
 
         //se obitene la sesion
         reference.child("usuarios").child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -131,7 +137,6 @@ public class ReservaDispositivos extends AppCompatActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION);
 
         if (permission == PackageManager.PERMISSION_GRANTED) {
-            //Si tenemos permisos... volveremos aquí en unos momentos.
             FusedLocationProviderClient locationProviderClient =
                     LocationServices.getFusedLocationProviderClient(getApplicationContext());
             locationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -140,14 +145,7 @@ public class ReservaDispositivos extends AppCompatActivity {
                     ubicacion = location;
                     Button boton = findViewById(R.id.configurarUbicacion);
                     boton.setText(R.string.actualizar_ubicacion);
-                    MapView map = findViewById(R.id.mapView);
-                    map.setVisibility(View.VISIBLE);
-                    map.getMapAsync(new OnMapReadyCallback() {
-                        @Override
-                        public void onMapReady(GoogleMap googleMap) {
-                            googleMap.setLocationSource((LocationSource) ubicacion);
-                        }
-                    });
+                    Toast.makeText(getApplicationContext(),"se ha obtenido una nueva ubicacion",Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -201,5 +199,13 @@ public class ReservaDispositivos extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        if (ubicacion!= null) {
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(ubicacion.getLatitude(), ubicacion.getLatitude()))
+                    .title("mapa"));
+        }
     }
 }

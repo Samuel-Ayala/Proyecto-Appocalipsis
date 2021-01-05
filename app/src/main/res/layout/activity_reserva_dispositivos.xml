@@ -52,7 +52,7 @@
         android:id="@+id/emailReserva"
         android:layout_width="0dp"
         android:layout_height="63dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="@string/desea_recibir_un_correo_electronico_con_la_respuesta_a_la_reserva"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/configurarUbicacion"
@@ -78,13 +78,5 @@
         app:layout_constraintStart_toStartOf="@+id/direccionReserva"
         app:layout_constraintTop_toBottomOf="@+id/direccionReserva" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/configurarUbicacion"
-        app:layout_constraintStart_toEndOf="@+id/configurarUbicacion"
-        app:layout_constraintTop_toTopOf="@+id/configurarUbicacion"
-        tools:visibility="invisible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

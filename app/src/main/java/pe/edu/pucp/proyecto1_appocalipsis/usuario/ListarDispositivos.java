@@ -37,7 +37,7 @@ public class ListarDispositivos extends AppCompatActivity {
     ArrayList<Dispositivo> dispositivos=new ArrayList<>();
     private ArrayList<StorageReference> imgRefs=new ArrayList<>();
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-    StorageReference storage = FirebaseStorage.getInstance().getReference().child("imagenes");
+    StorageReference storage = FirebaseStorage.getInstance().getReference().child("fotos");
     String filtroTipo;
     String filtroMarca;
     @Override
@@ -60,7 +60,7 @@ public class ListarDispositivos extends AppCompatActivity {
                 }
 
                 //Poner los dispositivos en el recycler view
-                DispositivosUserAdapter dispositivosUserAdapter = new DispositivosUserAdapter(dispositivos, ListarDispositivos.this);
+                DispositivosUserAdapter dispositivosUserAdapter = new DispositivosUserAdapter(dispositivos, ListarDispositivos.this,imgRefs);
                 listarEnRV(dispositivosUserAdapter);
 
                 //Se configura el filtro de marcas
@@ -143,7 +143,7 @@ public class ListarDispositivos extends AppCompatActivity {
         if (listaFiltrada.size()==0) findViewById(R.id.ceroResults).setVisibility(View.VISIBLE);
         else findViewById(R.id.ceroResults).setVisibility(View.GONE);
 
-        DispositivosUserAdapter dispositivosUserAdapter = new DispositivosUserAdapter(listaFiltrada,ListarDispositivos.this);
+        DispositivosUserAdapter dispositivosUserAdapter = new DispositivosUserAdapter(listaFiltrada,ListarDispositivos.this, imgRefs);
         return dispositivosUserAdapter;
     }
 

@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
@@ -44,7 +46,10 @@ public class MasDetalles extends AppCompatActivity {
         stock.setText(String.valueOf(dispositivo.getStock()));
         caracteristicas.setText(dispositivo.getCaracteristicas());
         incluye.setText(dispositivo.getIncluye());
-        Glide.with(this).load(dispositivo.getImagen()).into(imagen);
+
+        //poner la imagen
+        StorageReference storageImage = FirebaseStorage.getInstance().getReference().child("fotos").child(dispositivo.getFoto());
+        Glide.with(this).load(storageImage).into(imagen);
 
         //Funcionalidad reservar
         reservar.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +58,7 @@ public class MasDetalles extends AppCompatActivity {
                 Intent intent1 = new Intent(MasDetalles.this, ReservaDispositivos.class);
                 intent1.putExtra("Dispositivo",dispositivo);
                 int reqCode = 1;
-                startActivityForResult(intent,reqCode);
+                startActivityForResult(intent1,reqCode);
             }
         });
     }

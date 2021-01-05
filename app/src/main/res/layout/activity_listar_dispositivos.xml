@@ -50,11 +50,9 @@
         android:id="@+id/filtroMarca"
         android:layout_width="256dp"
         android:layout_height="44dp"
-        android:layout_marginTop="178dp"
-        android:layout_marginBottom="149dp"
-        app:layout_constraintBottom_toTopOf="@+id/ceroResults"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/filtroTipo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/filtroTipo" />
 
     <ImageView
         android:id="@+id/lupa"

@@ -2,6 +2,7 @@ package pe.edu.pucp.proyecto1_appocalipsis.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,13 +50,14 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
 
     public DispositivosITAdapter(List<Dispositivo> listaDispositivos, Context context) {
         this.listaDispositivos = listaDispositivos;
+        //Log.d("INFO APP IT ADAPTER",listaDispositivos.get(0).getMarca());
         this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_dispositivo,parent,false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.item_dispositivo,parent,false);
         return new ViewHolder(itemView);
     }
 
@@ -63,13 +65,14 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Dispositivo dispositivo = listaDispositivos.get(position);
 
+        Log.d("ADAPTER IT",dispositivo.getTipo() + dispositivo.getMarca() + dispositivo.getCaracteristicas() + dispositivo.getIncluye() + dispositivo.getStock());
         holder.txtTipo.setText(dispositivo.getTipo());
         holder.txtMarca.setText(dispositivo.getMarca());
         holder.txtCaracteristicas.setText(dispositivo.getCaracteristicas());
         holder.txtIncluye.setText(dispositivo.getIncluye());
-        holder.txtStock.setText(dispositivo.getStock());
+        holder.txtStock.setText(dispositivo.getStock() + "");
 
-        Glide.with(context).load(dispositivo.getImagen()).into(holder.imagenDispositivo);
+        Glide.with(context).load(dispositivo.getFoto()).into(holder.imagenDispositivo);
 
         holder.editarDispositivo.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,7 +1,5 @@
 package pe.edu.pucp.proyecto1_appocalipsis.Entity;
 
-import com.google.firebase.storage.StorageReference;
-
 import java.io.Serializable;
 
 public class Dispositivo implements Serializable {
@@ -9,7 +7,7 @@ public class Dispositivo implements Serializable {
     private String marca;
     private String caracteristicas;
     private String incluye;
-    private String imagen;
+    private String foto;
     private int stock;
 
 
@@ -55,11 +53,11 @@ public class Dispositivo implements Serializable {
         this.stock = stock;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

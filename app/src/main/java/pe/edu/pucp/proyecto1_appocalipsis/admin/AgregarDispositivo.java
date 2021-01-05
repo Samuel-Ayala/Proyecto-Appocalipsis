@@ -97,18 +97,16 @@ public class AgregarDispositivo extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             Uri downloadLink = task.getResult();
                             final DatabaseReference currentUserDB = userDatabase.child(nombreCarpetaDispositivo);
-                            currentUserDB.child("marca").setValue(marca.getText().toString());
-                            currentUserDB.child("tipo").setValue(tipo.getSelectedItem().toString());
-                            currentUserDB.child("caracteristicas").setValue(caracteristicas.getText().toString());
-                            currentUserDB.child("incluye").setValue(incluye.getText().toString());
-                            currentUserDB.child("stock").setValue(stock.getText().toString());
-                            currentUserDB.child("foto").setValue(downloadLink.toString());
 
                             Dispositivo d = new Dispositivo();
                             d.setTipo(tipo.getSelectedItem().toString());
                             d.setStock(Integer.parseInt(stock.getText().toString()));
                             d.setMarca(marca.getText().toString());
                             d.setIncluye(incluye.getText().toString());
+                            d.setImagen(downloadLink.toString());
+                            d.setCaracteristicas(caracteristicas.getText().toString());
+                            d.setFoto(tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
+                            currentUserDB.setValue(d);
                         }
                     }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
@@ -119,7 +117,6 @@ public class AgregarDispositivo extends AppCompatActivity {
                 }
             }
         });
-
         cargarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

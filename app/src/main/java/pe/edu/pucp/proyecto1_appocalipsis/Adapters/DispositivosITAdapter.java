@@ -65,13 +65,13 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Dispositivo dispositivo = listaDispositivos.get(position);
 
-        holder.txtTipo.setText(dispositivo.getTipo());
-        holder.txtMarca.setText(dispositivo.getMarca());
-        holder.txtCaracteristicas.setText(dispositivo.getCaracteristicas());
-        holder.txtIncluye.setText(dispositivo.getIncluye());
-        holder.txtStock.setText(dispositivo.getImagen() + "");
+        holder.txtTipo.setText("Tipo: " + dispositivo.getTipo());
+        holder.txtMarca.setText("Marca: " + dispositivo.getMarca());
+        holder.txtCaracteristicas.setText("Caracteristicas: " + dispositivo.getCaracteristicas());
+        holder.txtIncluye.setText("Incluye: " + dispositivo.getIncluye());
+        holder.txtStock.setText("Stock: " + dispositivo.getStock());
 
-        Glide.with(context).load(dispositivo.getFoto()).into(holder.imagenDispositivo);
+        Glide.with(context).load(dispositivo.getImagen()).into(holder.imagenDispositivo);
 
         holder.editarDispositivo.setOnClickListener(new View.OnClickListener() {
             @Override

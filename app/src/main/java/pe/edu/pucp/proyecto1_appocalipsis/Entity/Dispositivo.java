@@ -10,6 +10,7 @@ public class Dispositivo implements Serializable {
     private String caracteristicas;
     private String incluye;
     private String imagen;
+
     private int stock;
 
 

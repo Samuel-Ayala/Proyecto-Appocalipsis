@@ -1,26 +1,33 @@
 package pe.edu.pucp.proyecto1_appocalipsis.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.FirebaseDatabase;
+import java.util.List;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
+import pe.edu.pucp.proyecto1_appocalipsis.usuario.MasDetalles;
 
 public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAdapter.ViewHolder>{
 
+    private final List<Reserva> listaReservas;
     private Reserva[] reservas;
     private Context context;
 
-    public ListarReservasAdapter(Reserva[] reservas, Context context) {
-        this.reservas = reservas;
+
+    public ListarReservasAdapter(List<Reserva> listaReservas, Context context) {
+        this.listaReservas = listaReservas;
+        //this.reservas = reservas;
         this.context = context;
     }
 
@@ -33,19 +40,51 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListarReservasAdapter.ViewHolder holder, int position) {
-        holder.reserva=reservas[position];
-        holder.context=context;
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        //holder.reserva=reservas[position];
+        //holder.context=context;
 
+        final Reserva reserva = listaReservas.get(position);
+
+        holder.txtDireccion.setText(reserva.getDireccion());
+        holder.txtEstado.setText(reserva.getEstado());
+        holder.txtMotivo.setText(reserva.getMotivo());
+
+        //Aqui va la logica de los botones de aceptar o rechazar la reserva
+
+        /*
+        holder.aprobar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MasDetalles.class);
+                intent.putExtra("Dispositivo",dispositivo);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.rechazar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MasDetalles.class);
+                intent.putExtra("Dispositivo",dispositivo);
+                context.startActivity(intent);
+            }
+        });
+        */
     }
 
     @Override
     public int getItemCount() {
-        return reservas.length;
+        //return reservas.length;
+        return listaReservas.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
+        TextView txtDireccion, txtEstado, txtMotivo;
+        Button aprobar, rechazar;
+
         Reserva reserva;
         Context context;
         public ViewHolder(@NonNull View itemView) {
@@ -53,6 +92,12 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
             TextView tipo = itemView.findViewById(R.id.tipoReserva);
             TextView marca = itemView.findViewById(R.id.marcaReserva);
             TextView estado = itemView.findViewById(R.id.estadoReserva);
+
+
+            txtDireccion= itemView.findViewById(R.id.direccionReserva);
+            txtEstado = itemView.findViewById(R.id.estadoReserva);
+            txtMotivo = itemView.findViewById(R.id.motivoReserva);
+
 
             tipo.setText(reserva.getDispositivo().getTipo());
             marca.setText(reserva.getDispositivo().getMarca());

@@ -2,7 +2,6 @@ package pe.edu.pucp.proyecto1_appocalipsis.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
-import pe.edu.pucp.proyecto1_appocalipsis.admin.EditarDispositivo;
-import pe.edu.pucp.proyecto1_appocalipsis.admin.GestionarDispositivos;
-import pe.edu.pucp.proyecto1_appocalipsis.usuario.ListarDispositivos;
 import pe.edu.pucp.proyecto1_appocalipsis.usuario.MasDetalles;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
@@ -36,28 +29,10 @@ public class DispositivosUserAdapter extends RecyclerView.Adapter<DispositivosUs
     private ArrayList<StorageReference> imgRef;
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtMarca, txtTipo, txtCaracteristicas, txtIncluye, txtStock;
-        Button detalles, editarDispositivo, eliminarDispositivo;
-        ImageView imagenDispositivo;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            //Se llena el View Holder
-            imagenDispositivo = itemView.findViewById(R.id.imgDispositivo);
-            txtMarca= itemView.findViewById(R.id.marcaDispositivo);
-            txtTipo = itemView.findViewById(R.id.tipoDispositivo);
-            txtCaracteristicas = itemView.findViewById(R.id.caracteristicasDispositivo);
-            txtIncluye = itemView.findViewById(R.id.incluyeDetalles);
-            txtStock = itemView.findViewById(R.id.stockDispositivo);
-            detalles = itemView.findViewById(R.id.detalles);
-        }
-    }
-
-    public DispositivosUserAdapter(List<Dispositivo> listaDispositivos, Context context) {
+    public DispositivosUserAdapter(List<Dispositivo> listaDispositivos, Context context, ArrayList<StorageReference> imgRef) {
         this.listaDispositivos = listaDispositivos;
         this.context = context;
+        this.imgRef = imgRef;
     }
 
 
@@ -74,20 +49,14 @@ public class DispositivosUserAdapter extends RecyclerView.Adapter<DispositivosUs
 
         holder.txtTipo.setText(dispositivo.getTipo());
         holder.txtMarca.setText(dispositivo.getMarca());
-        holder.txtCaracteristicas.setText(dispositivo.getCaracteristicas());
-        holder.txtIncluye.setText(dispositivo.getIncluye());
-        holder.txtStock.setText(dispositivo.getStock());
-
-        Glide.with(context).load(dispositivo.getImagen()).into(holder.imagenDispositivo);
 
         StorageReference imagen;
         //obtener la imagen
         for (StorageReference sr : imgRef)
         {
-            if (sr.getName().equalsIgnoreCase(dispositivo.getTipo()))
+            if (sr.getName().equalsIgnoreCase(dispositivo.getFoto()))
             {
                 imagen = sr;
-                //dispositivo.setImagen(imagen);
                 //mostrar la imagen
                 Glide.with(context).load(imagen).into(holder.imagenDispositivo);
                 break;
@@ -109,6 +78,21 @@ public class DispositivosUserAdapter extends RecyclerView.Adapter<DispositivosUs
         return listaDispositivos.size();
     }
 
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView txtMarca, txtTipo;
+        Button detalles;
+        ImageView imagenDispositivo;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            //Se llena el View Holder
+            imagenDispositivo = itemView.findViewById(R.id.imagenDispositivo);
+            txtMarca= itemView.findViewById(R.id.marcaDispositivo);
+            txtTipo = itemView.findViewById(R.id.tipoDispositivo);
+            detalles = itemView.findViewById(R.id.detalles);
+        }
+    }
 
 
 }

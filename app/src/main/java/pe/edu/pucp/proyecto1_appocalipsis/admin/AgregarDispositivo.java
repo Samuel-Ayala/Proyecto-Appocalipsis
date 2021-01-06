@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -79,41 +80,96 @@ public class AgregarDispositivo extends AppCompatActivity {
         agregarDispositivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final ProgressDialog dialog = new ProgressDialog(AgregarDispositivo.this);
+                dialog.setMessage("Añadiendo dispositivo al inventario ...");
+                dialog.setCancelable(false);
+                dialog.show();
                 final String nombreCarpetaDispositivo = tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString();
 
-                if (rutaDeArchivo != null){
-                    StorageReference stReference = FirebaseStorage.getInstance().getReference();
-                    final StorageReference fotoRef = stReference.child("fotos").child(nombreCarpetaDispositivo);
-                    fotoRef.putFile(rutaDeArchivo).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                        @Override
-                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                            if (!task.isSuccessful()){
-                                throw new Exception();
+                if (!marca.getText().toString().isEmpty() && !tipo.getSelectedItem().toString().isEmpty() && !caracteristicas.getText().toString().isEmpty() && !incluye.getText().toString().isEmpty() && !stock.getText().toString().isEmpty()) {
+                    if (rutaDeArchivo != null) {
+                        StorageReference stReference = FirebaseStorage.getInstance().getReference();
+                        final StorageReference fotoRef = stReference.child("fotos").child(nombreCarpetaDispositivo);
+                        fotoRef.putFile(rutaDeArchivo).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                            @Override
+                            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                if (!task.isSuccessful()) {
+                                    throw new Exception();
+                                }
+                                return fotoRef.getDownloadUrl();
                             }
-                            return fotoRef.getDownloadUrl();
-                        }
-                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            Uri downloadLink = task.getResult();
-                            final DatabaseReference currentUserDB = userDatabase.child(nombreCarpetaDispositivo);
+                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                Uri downloadLink = task.getResult();
+                                final DatabaseReference currentUserDB = userDatabase.child(nombreCarpetaDispositivo);
 
-                            Dispositivo d = new Dispositivo();
-                            d.setTipo(tipo.getSelectedItem().toString());
-                            d.setStock(Integer.parseInt(stock.getText().toString()));
-                            d.setMarca(marca.getText().toString());
-                            d.setIncluye(incluye.getText().toString());
-                            d.setImagen(downloadLink.toString());
-                            d.setCaracteristicas(caracteristicas.getText().toString());
-                            d.setFoto(tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
-                            currentUserDB.setValue(d);
-                        }
-                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            Toast.makeText(getApplicationContext(), "Dispositivo agregado al inventario", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                                Dispositivo d = new Dispositivo();
+                                d.setTipo(tipo.getSelectedItem().toString());
+                                d.setStock(Integer.parseInt(stock.getText().toString()));
+                                d.setMarca(marca.getText().toString());
+                                d.setIncluye(incluye.getText().toString());
+                                d.setImagen(downloadLink.toString());
+                                d.setCaracteristicas(caracteristicas.getText().toString());
+                                d.setFoto(tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
+                                currentUserDB.setValue(d);
+                            }
+                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                dialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Dispositivo agregado al inventario exitosamente", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else if (imbytes != null) {
+                        StorageReference stReference = FirebaseStorage.getInstance().getReference();
+                        final StorageReference fotoRef = stReference.child("fotos").child(nombreCarpetaDispositivo);
+                        fotoRef.putBytes(imbytes).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                            @Override
+                            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                if (!task.isSuccessful()) {
+                                    throw new Exception();
+                                }
+                                return fotoRef.getDownloadUrl();
+                            }
+                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                Uri downloadLink = task.getResult();
+                                final DatabaseReference currentUserDB = userDatabase.child(nombreCarpetaDispositivo);
+
+                                Dispositivo d = new Dispositivo();
+                                d.setStock(Integer.parseInt(stock.getText().toString()));
+                                d.setMarca(marca.getText().toString());
+                                d.setIncluye(incluye.getText().toString());
+                                d.setImagen(downloadLink.toString());
+                                d.setCaracteristicas(caracteristicas.getText().toString());
+                                d.setFoto(tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
+                                currentUserDB.setValue(d);
+                            }
+                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                dialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Dispositivo agregado al inventario exitosamente", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        final DatabaseReference currentUserDB = userDatabase.child(nombreCarpetaDispositivo);
+                        Dispositivo d = new Dispositivo();
+                        d.setStock(Integer.parseInt(stock.getText().toString()));
+                        d.setMarca(marca.getText().toString());
+                        d.setIncluye(incluye.getText().toString());
+                        d.setImagen("https://firebasestorage.googleapis.com/v0/b/appocalipsis.appspot.com/o/fotos%2Fimagen_no-disponible.jpg?alt=media&token=fe6cb6fd-a2fa-49f0-95d9-6a5e78b617ac");
+                        d.setCaracteristicas(caracteristicas.getText().toString());
+                        d.setFoto(tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
+                        currentUserDB.setValue(d);
+                        dialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Dispositivo agregado al inventario exitosamente", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    dialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Debe llenar todos lo campos, pero la fotografía es opcional", Toast.LENGTH_SHORT).show();
                 }
             }
         });

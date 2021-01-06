@@ -61,8 +61,10 @@ public class GestionarDispositivos extends AppCompatActivity {
                     for (DataSnapshot data : snapshot.getChildren()) {
 
                         Dispositivo d = data.getValue(Dispositivo.class);
-
                         /*
+                        Dispositivo d = new Dispositivo();
+                        Log.d("INFO APP",d.getMarca()+d.getStock());
+
                         String urlFoto = data.child("foto").getValue().toString();
                         String caract = data.child("caracteristicas").getValue().toString();
                         String incluye = data.child("incluye").getValue().toString();

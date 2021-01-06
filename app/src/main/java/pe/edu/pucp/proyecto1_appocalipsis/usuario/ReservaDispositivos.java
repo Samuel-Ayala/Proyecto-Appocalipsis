@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -118,7 +119,9 @@ public class ReservaDispositivos extends AppCompatActivity {
                     //añadir la ubicacion
                     reserva.setUbicacion(ubicacion);
                     //Hacer el post
-                    reference.child("reservas").push().setValue(reserva);
+                    DatabaseReference resref = reference.child("reservas").push();
+                    reserva.setId(resref.getKey());
+                    resref.setValue(reserva);
                     //regresarlo a la lista
                     setResult(RESULT_OK);
                     finish();

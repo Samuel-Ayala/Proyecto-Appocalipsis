@@ -64,8 +64,10 @@ public class HistorialDePrestamo extends AppCompatActivity {
                     //Dispositivo dispositivo = ds.getValue(Dispositivo.class);
                     Reserva reserva = ds.getValue(Reserva.class);
 
-                    if(ds.getKey().equals(currentUser.getUid())&&reserva.getEstado().equals("procesando")){
-                        reservas.add(reserva);
+                    if(reserva.getUsuario().equals(currentUser.getUid())){
+                        if(reserva.getEstado().equals("aceptado")||reserva.getEstado().equals("rechazado")){
+                            reservas.add(reserva);
+                        }
                     }
                 }
 
@@ -80,20 +82,20 @@ public class HistorialDePrestamo extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
+        /*
         //Se llenan las solicutudes en el recycler view
         ListarReservasAdapter listarReservasAdapter = new ListarReservasAdapter(listaReservas, getApplicationContext());
         RecyclerView rv = findViewById(R.id.rvSolicitudesPrestamos);
         rv.setAdapter(listarReservasAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-
+        */
 
     }
     //Para listar en el RV
     public void listarEnRV(ListarReservasAdapter listarReservasAdapter)
     {
-        RecyclerView rv = findViewById(R.id.listaDispositivos);
+        RecyclerView rv = findViewById(R.id.rvHistorialPrestamos);
         rv.setAdapter(listarReservasAdapter);
         rv.setLayoutManager(new LinearLayoutManager(HistorialDePrestamo.this));
     }

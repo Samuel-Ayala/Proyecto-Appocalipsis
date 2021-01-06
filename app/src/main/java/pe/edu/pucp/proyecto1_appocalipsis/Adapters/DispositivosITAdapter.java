@@ -22,6 +22,8 @@ import java.util.List;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.admin.EditarDispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
+import pe.edu.pucp.proyecto1_appocalipsis.admin.GestionarDispositivos;
+import pe.edu.pucp.proyecto1_appocalipsis.usuario.ListarDispositivos;
 
 public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAdapter.ViewHolder> {
 
@@ -93,6 +95,8 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
                 /// ELIMINAMOS REFERENCIA DE STORAGE
                 StorageReference stReference = FirebaseStorage.getInstance().getReference().child("fotos");
                 stReference.child(nombreCarpetaDispositivo).delete();
+                Intent intent = new Intent(context, GestionarDispositivos.class);
+                context.startActivity(intent);
             }
         });
     }

@@ -103,9 +103,9 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
             txtMarca = itemView.findViewById(R.id.marcaReserva);
 
 
-            tipo.setText(reserva.getDispositivo().getTipo());
-            marca.setText(reserva.getDispositivo().getMarca());
-            estado.setText(reserva.getEstado());
+            //tipo.setText(reserva.getDispositivo().getTipo());
+            //marca.setText(reserva.getDispositivo().getMarca());
+            //estado.setText(reserva.getEstado());
 
         }
     }

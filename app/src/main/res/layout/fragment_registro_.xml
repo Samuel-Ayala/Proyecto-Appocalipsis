@@ -8,160 +8,169 @@
     tools:context=".Fragments.Registro_Fragment">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="307dp"
-            android:layout_height="91dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:text="Bienvenido al sistema de reserva de dispositivos informáticos"
-            android:textColor="#010209"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="338dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/subtituloRegistro"
-            android:textSize="16sp"
-            android:textColor="#010209"
-            app:layout_constraintEnd_toEndOf="@+id/textView11"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-        <EditText
-            android:id="@+id/inputNombre"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColorHint="#010209"
-            android:ems="10"
-            android:textSize="14dp"
-            android:hint="Nombre completo"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="307dp"
+                android:layout_height="91dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:text="@string/bienvenido_al_sistema_de_reserva_de_dispositivos_inform_ticos"
+                android:textAlignment="center"
+                android:textColor="#010209"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="338dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/subtituloRegistro"
+                android:textColor="#010209"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView11"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <EditText
+                android:id="@+id/inputNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:ems="10"
+                android:hint="@string/nombre_completo"
+                android:inputType="textPersonName"
+                android:textColorHint="#010209"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
+                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+                android:importantForAutofill="no" />
 
 
-        <EditText
-            android:id="@+id/inputCorreoRegistro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColorHint="#010209"
-            android:ems="10"
-            android:textSize="14dp"
-            android:hint="Correo electrónico"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+            <EditText
+                android:id="@+id/inputCorreoRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:ems="10"
+                android:hint="@string/correo_electr_nico"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#010209"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
+                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+                android:importantForAutofill="no" />
 
 
-        <EditText
-            android:id="@+id/inputCodigo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:ems="10"
-            android:textSize="14dp"
-            android:hint="Código"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColorHint="#010209"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/inputCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:ems="10"
+                android:hint="@string/c_digo"
+                android:inputType="number"
+                android:textColorHint="#010209"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAutofill="no" />
 
-        <EditText
-            android:id="@+id/inputPasswordRegistro"
-            android:layout_width="347dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="32dp"
-            android:ems="10"
-            android:textSize="14dp"
-            android:hint="Contraseña"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColorHint="#010209"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="@+id/spinner2"
-            app:layout_constraintStart_toStartOf="@+id/spinner2"
-            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+            <EditText
+                android:id="@+id/inputPasswordRegistro"
+                android:layout_width="347dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:ems="10"
+                android:hint="@string/contrase_a"
+                android:inputType="textPassword"
+                android:textColorHint="#010209"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/spinner2"
+                app:layout_constraintStart_toStartOf="@+id/spinner2"
+                app:layout_constraintTop_toBottomOf="@+id/spinner2"
+                android:importantForAutofill="no" />
 
-        <Spinner
-            android:id="@+id/spinnerRoles"
-            android:layout_width="347dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="32dp"
-            android:autofillHints="Rol"
-            android:backgroundTint="@color/colorPrimary"
-            android:entries="@array/roles"
-            android:prompt="@string/spinneroles_titulo"
-            style="@style/colorSpinnerElement"
-            android:spinnerMode="dropdown"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName9"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName9"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
+            <Spinner
+                android:id="@+id/spinnerRoles"
+                style="@style/colorSpinnerElement"
+                android:layout_width="347dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:autofillHints="Rol"
+                android:backgroundTint="@color/colorPrimary"
+                android:entries="@array/roles"
+                android:prompt="@string/spinneroles_titulo"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName9"
+                app:layout_constraintHorizontal_bias="0.484"
+                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName9"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
 
-        <Button
-            android:id="@+id/buttonAceptarRegistro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/boton_redondeado"
-            android:text="ACEPTAR"
-            android:textColor="@color/common_google_signin_btn_text_dark"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName11"
-            app:layout_constraintHorizontal_bias="0.482"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName11"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName12" />
+            <Button
+                android:id="@+id/buttonAceptarRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/boton_redondeado"
+                android:text="@string/aceptar"
+                android:textColor="@color/common_google_signin_btn_text_dark"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName11"
+                app:layout_constraintHorizontal_bias="0.482"
+                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName11"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName12" />
 
-        <Button
-            android:id="@+id/buttonCancelarRegistro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/boton_registro"
-            android:text="Cancelar"
-            android:textColor="#010209"
-            app:layout_constraintEnd_toEndOf="@+id/button4"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="@+id/buttonAceptarRegistro"
-            app:layout_constraintTop_toBottomOf="@+id/buttonAceptarRegistro" />
+            <Button
+                android:id="@+id/buttonCancelarRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/boton_registro"
+                android:text="@string/cancelar"
+                android:textColor="#010209"
+                app:layout_constraintEnd_toEndOf="@+id/button4"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="@+id/buttonAceptarRegistro"
+                app:layout_constraintTop_toBottomOf="@+id/buttonAceptarRegistro" />
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

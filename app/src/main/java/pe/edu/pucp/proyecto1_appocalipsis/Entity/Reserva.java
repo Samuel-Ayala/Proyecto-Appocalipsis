@@ -1,13 +1,13 @@
 package pe.edu.pucp.proyecto1_appocalipsis.Entity;
 
-import android.location.Location;
+import java.util.ArrayList;
 
 public class Reserva {
 
     private Dispositivo dispositivo;
     private String motivo;
     private String direccion;
-    private Location ubicacion = null; //con GPS
+    private ArrayList<Double> ubicacion; //con GPS
     private boolean enviarCorreo;
     private String estado;
     private Usuario usuario;
@@ -54,11 +54,11 @@ public class Reserva {
         this.direccion = direccion;
     }
 
-    public Location getUbicacion() {
+    public ArrayList<Double> getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(Location ubicacion) {
+    public void setUbicacion(ArrayList<Double> ubicacion) {
         this.ubicacion = ubicacion;
     }
 

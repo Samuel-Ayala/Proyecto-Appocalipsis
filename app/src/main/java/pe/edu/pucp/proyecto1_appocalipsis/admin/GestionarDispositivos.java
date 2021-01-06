@@ -58,11 +58,11 @@ public class GestionarDispositivos extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists()) {
-                    //Toast.makeText(getApplicationContext(), "se muestra la lista", Toast.LENGTH_SHORT).show();
                     for (DataSnapshot data : snapshot.getChildren()) {
 
-                        Dispositivo d = new Dispositivo();
+                        Dispositivo d = data.getValue(Dispositivo.class);
 
+                        /*
                         String urlFoto = data.child("foto").getValue().toString();
                         String caract = data.child("caracteristicas").getValue().toString();
                         String incluye = data.child("incluye").getValue().toString();
@@ -76,9 +76,9 @@ public class GestionarDispositivos extends AppCompatActivity {
                         d.setMarca(marca);
                         d.setStock(Integer.parseInt(stock));
                         d.setTipo(tipo);
+                         */
 
                         listaDispos.add(d);
-                        Log.d("INFO APP GESTIONAR",d.getMarca());
                     }
                     dispositivosITAdapter = new DispositivosITAdapter(listaDispos,GestionarDispositivos.this);
                     listarEnRV(dispositivosITAdapter);

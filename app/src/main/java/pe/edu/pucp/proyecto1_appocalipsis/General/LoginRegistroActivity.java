@@ -116,7 +116,6 @@ public class LoginRegistroActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), MenuPrincipalUsuario.class);
         i.putExtras(params);
         startActivity(i);
-        finish();
     }
 
     public void ingresoExitosoLoginUsuarioTI(String inputEmail, String rol){
@@ -126,7 +125,6 @@ public class LoginRegistroActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), MenuPrincipalAdmin.class);
         i.putExtras(params);
         startActivity(i);
-        finish();
     }
 
 

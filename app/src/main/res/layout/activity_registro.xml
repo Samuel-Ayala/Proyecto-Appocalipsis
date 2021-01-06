@@ -16,12 +16,13 @@
         android:layout_marginTop="236dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="Código de alumno"
+        android:hint="@string/c_digo_de_alumno"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editTextTextPersonName9"
@@ -31,11 +32,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="Correo electrónico"
+        android:hint="@string/correo_electr_nico"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editTextTextPersonName11"
@@ -45,11 +47,12 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="Contraseña"
+        android:hint="@string/contrase_a"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/spinner2"
         app:layout_constraintStart_toStartOf="@+id/spinner2"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner2"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/button4"
@@ -59,7 +62,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/boton_redondeado"
-        android:text="ACEPTAR"
+        android:text="@string/aceptar"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName11"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName11"
@@ -73,12 +76,13 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="Confirmar contraseña"
+        android:hint="@string/confirmar_contrase_a"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName11"
         app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName11"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName11" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName11"
+        android:importantForAutofill="no" />
 
     <Spinner
         android:id="@+id/spinner2"
@@ -103,7 +107,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="32dp"
-        android:text="Bienvenido al sistema de reserva de dispositivos informáticos"
+        android:text="@string/bienvenido_al_sistema_de_reserva_de_dispositivos_inform_ticos"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -116,7 +120,7 @@
         android:layout_width="338dp"
         android:layout_height="72dp"
         android:layout_marginTop="16dp"
-        android:text="A continuación coloque los datos solicitados para que se registre en el sistema:"
+        android:text="@string/a_continuaci_n_coloque_los_datos_solicitados_para_que_se_registre_en_el_sistema"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textView11"
         app:layout_constraintHorizontal_bias="0.496"
@@ -131,7 +135,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/boton_registro"
-        android:text="Cancelar"
+        android:text="@string/cancelar"
         app:layout_constraintEnd_toEndOf="@+id/button4"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/button4"

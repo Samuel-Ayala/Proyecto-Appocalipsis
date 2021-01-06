@@ -120,7 +120,6 @@ public class ReservaDispositivos extends AppCompatActivity {
                     reference.child("reservas").push().setValue(reserva);
                     //regresarlo a la lista
                     setResult(RESULT_OK);
-                    
                     finish();
                 }
             }

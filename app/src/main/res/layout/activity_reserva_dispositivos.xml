@@ -6,76 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".usuario.ReservaDispositivos">
 
-    <EditText
-        android:id="@+id/motivoReserva"
-        android:layout_width="0dp"
-        android:layout_height="108dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:hint="@string/indique_el_motivo_de_su_reserva"
-        android:inputType="textPersonName"
-        android:maxLines="@android:integer/config_mediumAnimTime"
-        android:textAlignment="viewStart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/solicitud_de_reserva"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/direccionReserva"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/indique_su_direccion"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/motivoReserva"
-        app:layout_constraintStart_toStartOf="@+id/motivoReserva"
-        app:layout_constraintTop_toBottomOf="@+id/motivoReserva"
-        android:autofillHints="" />
+            <EditText
+                android:id="@+id/motivoReserva"
+                android:layout_width="0dp"
+                android:layout_height="108dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints=""
+                android:hint="@string/indique_el_motivo_de_su_reserva"
+                android:inputType="textPersonName"
+                android:maxLines="@android:integer/config_mediumAnimTime"
+                android:textAlignment="viewStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <CheckBox
-        android:id="@+id/emailReserva"
-        android:layout_width="0dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/desea_recibir_un_correo_electronico_con_la_respuesta_a_la_reserva"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/configurarUbicacion"
-        app:layout_constraintTop_toBottomOf="@+id/configurarUbicacion" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/solicitud_de_reserva"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/reservarReserva"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/reservar"
-        app:layout_constraintEnd_toEndOf="@+id/emailReserva"
-        app:layout_constraintStart_toStartOf="@+id/emailReserva"
-        app:layout_constraintTop_toBottomOf="@+id/emailReserva" />
+            <EditText
+                android:id="@+id/direccionReserva"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/indique_su_direccion"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/motivoReserva"
+                app:layout_constraintStart_toStartOf="@+id/motivoReserva"
+                app:layout_constraintTop_toBottomOf="@+id/motivoReserva"
+                android:autofillHints="" />
 
-    <Button
-        android:id="@+id/configurarUbicacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/obtener_ubicaci_n"
-        app:layout_constraintStart_toStartOf="@+id/direccionReserva"
-        app:layout_constraintTop_toBottomOf="@+id/direccionReserva" />
+            <CheckBox
+                android:id="@+id/emailReserva"
+                android:layout_width="0dp"
+                android:layout_height="63dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/desea_recibir_un_correo_electronico_con_la_respuesta_a_la_reserva"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/configurarUbicacion"
+                app:layout_constraintTop_toBottomOf="@+id/configurarUbicacion" />
+
+            <Button
+                android:id="@+id/reservarReserva"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/reservar"
+                app:layout_constraintEnd_toEndOf="@+id/emailReserva"
+                app:layout_constraintStart_toStartOf="@+id/emailReserva"
+                app:layout_constraintTop_toBottomOf="@+id/emailReserva" />
+
+            <Button
+                android:id="@+id/configurarUbicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/obtener_ubicaci_n"
+                app:layout_constraintStart_toStartOf="@+id/direccionReserva"
+                app:layout_constraintTop_toBottomOf="@+id/direccionReserva" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

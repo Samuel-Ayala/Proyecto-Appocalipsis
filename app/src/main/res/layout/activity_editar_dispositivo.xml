@@ -65,11 +65,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
                     android:hint="@string/stock"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7"
-                    android:importantForAutofill="no" />
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
 
                 <ImageView
                     android:id="@+id/imagenDeDispositivoAAgregarEdit"

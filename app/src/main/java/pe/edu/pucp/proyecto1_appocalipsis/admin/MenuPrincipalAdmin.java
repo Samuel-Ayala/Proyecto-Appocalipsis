@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import pe.edu.pucp.proyecto1_appocalipsis.R;
+import pe.edu.pucp.proyecto1_appocalipsis.usuario.SolicitudesDePrestamo;
 
 public class MenuPrincipalAdmin extends AppCompatActivity {
 
@@ -79,5 +80,20 @@ public class MenuPrincipalAdmin extends AppCompatActivity {
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////// IR A PEDIDOS DE RESERVA /////////////////////////////////////////
+
+        Button pedidosReserva = (Button) findViewById(R.id.reserva);
+        pedidosReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SolicitudesReserva.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
     }
 }

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -66,8 +67,11 @@ public class SolicitudesDePrestamo extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     //Dispositivo dispositivo = ds.getValue(Dispositivo.class);
                     Reserva reserva = ds.getValue(Reserva.class);
-
-                    if(ds.getKey().equals(currentUser.getUid())&&reserva.getEstado().equals("procesando")){
+                    Log.d("RESERVAS","el valor de ds.getKey() es : "+ ds.getKey());
+                    Log.d("RESERVAS","el valor de currentUser.getUid() es : "+ ds.getKey());
+                    Log.d("RESERVAS","========================");
+                    Log.d("RESERVAS","el valor de reserva.getEstado() es : "+ reserva.getEstado());
+                    if(ds.getKey().equals(currentUser.getUid())&&reserva.getEstado().equals("Procesando")){
                         reservas.add(reserva);
                     }
                 }
@@ -85,18 +89,21 @@ public class SolicitudesDePrestamo extends AppCompatActivity {
         });
 
 
+        /*
 
         //Se llenan las solicutudes en el recycler view
         ListarReservasAdapter listarReservasAdapter = new ListarReservasAdapter(reservas, getApplicationContext());
         RecyclerView rv = findViewById(R.id.rvSolicitudesPrestamos);
         rv.setAdapter(listarReservasAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+         */
     }
 
     //Para listar en el RV
     public void listarEnRV(ListarReservasAdapter listarReservasAdapter)
     {
-        RecyclerView rv = findViewById(R.id.listaDispositivos);
+        RecyclerView rv = findViewById(R.id.rvSolicitudesPrestamos);
         rv.setAdapter(listarReservasAdapter);
         rv.setLayoutManager(new LinearLayoutManager(SolicitudesDePrestamo.this));
     }

@@ -36,7 +36,8 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
     public ListarReservasAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.reserva,parent,false);
         ListarReservasAdapter.ViewHolder viewHolder = new ListarReservasAdapter.ViewHolder(itemView);
-        return viewHolder;
+        ViewHolder vHolder = new ViewHolder(itemView);
+        return vHolder;
     }
 
     @Override
@@ -46,9 +47,9 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
 
         final Reserva reserva = listaReservas.get(position);
 
-        holder.txtDireccion.setText(reserva.getDireccion());
         holder.txtEstado.setText(reserva.getEstado());
-        holder.txtMotivo.setText(reserva.getMotivo());
+        holder.txtTipo.setText(reserva.getDispositivo().getTipo());
+        holder.txtMarca.setText(reserva.getDispositivo().getMarca());
 
         //Aqui va la logica de los botones de aceptar o rechazar la reserva
 
@@ -82,7 +83,8 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView txtDireccion, txtEstado, txtMotivo;
+        TextView txtDireccion, txtEstado, txtMotivo,txtTipo, txtMarca;
+
         Button aprobar, rechazar;
 
         Reserva reserva;
@@ -97,6 +99,8 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
             txtDireccion= itemView.findViewById(R.id.direccionReserva);
             txtEstado = itemView.findViewById(R.id.estadoReserva);
             txtMotivo = itemView.findViewById(R.id.motivoReserva);
+            txtTipo = itemView.findViewById(R.id.tipoReserva);
+            txtMarca = itemView.findViewById(R.id.marcaReserva);
 
 
             tipo.setText(reserva.getDispositivo().getTipo());

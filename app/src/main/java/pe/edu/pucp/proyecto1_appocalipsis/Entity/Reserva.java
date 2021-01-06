@@ -7,10 +7,12 @@ public class Reserva {
     private Dispositivo dispositivo;
     private String motivo;
     private String direccion;
-    private Location ubicacion; //con GPS
+    private Location ubicacion = null; //con GPS
     private boolean enviarCorreo;
     private String estado;
     private Usuario usuario;
+
+
 
     public Usuario getUsuario() {
         return usuario;

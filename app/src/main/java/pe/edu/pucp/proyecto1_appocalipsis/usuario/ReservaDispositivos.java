@@ -1,11 +1,11 @@
 package pe.edu.pucp.proyecto1_appocalipsis.usuario;
 
 import android.Manifest;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,14 +21,6 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.LocationSource;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,17 +31,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Usuario;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
-public class ReservaDispositivos extends AppCompatActivity implements OnMapReadyCallback{
+public class ReservaDispositivos extends AppCompatActivity {
 
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     Usuario sesion;
-    Location ubicacion = null;
+    ArrayList<Double> ubicacion = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +88,12 @@ public class ReservaDispositivos extends AppCompatActivity implements OnMapReady
                 boolean error = false;
 
 
-                if (motivo.getText()==null)
+                if (motivo.getText().toString().equalsIgnoreCase(""))
                 {
                     motivo.setError("Se debe indicar un motivo");
                     error = true;
                 }
-                if (direccion.getText()==null)
+                if (direccion.getText().toString().equalsIgnoreCase(""))
                 {
                     direccion.setError("Se debe indicar su direccion");
                     error = true;
@@ -126,6 +120,7 @@ public class ReservaDispositivos extends AppCompatActivity implements OnMapReady
                     reference.child("reservas").push().setValue(reserva);
                     //regresarlo a la lista
                     setResult(RESULT_OK);
+                    
                     finish();
                 }
             }
@@ -142,7 +137,10 @@ public class ReservaDispositivos extends AppCompatActivity implements OnMapReady
             locationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
-                    ubicacion = location;
+                    ubicacion = new ArrayList<>();
+                    ubicacion.add(location.getLatitude());
+                    ubicacion.add(location.getAltitude());
+                    ubicacion.add(location.getLongitude());
                     Button boton = findViewById(R.id.configurarUbicacion);
                     boton.setText(R.string.actualizar_ubicacion);
                     Toast.makeText(getApplicationContext(),"se ha obtenido una nueva ubicacion",Toast.LENGTH_SHORT).show();
@@ -151,6 +149,7 @@ public class ReservaDispositivos extends AppCompatActivity implements OnMapReady
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                    Log.d("porque?", "onFailure: " + e.getMessage());
                 }
             });
         } else {
@@ -201,11 +200,4 @@ public class ReservaDispositivos extends AppCompatActivity implements OnMapReady
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        if (ubicacion!= null) {
-            googleMap.addMarker(new MarkerOptions().position(new LatLng(ubicacion.getLatitude(), ubicacion.getLatitude()))
-                    .title("mapa"));
-        }
-    }
 }

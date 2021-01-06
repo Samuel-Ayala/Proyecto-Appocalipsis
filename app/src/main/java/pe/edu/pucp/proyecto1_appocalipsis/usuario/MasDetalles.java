@@ -68,7 +68,7 @@ public class MasDetalles extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1 && resultCode== RESULT_OK)
         {
-            Toast.makeText(getApplicationContext(),"Reserva exitosa", Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(),"Reserva exitosa", Toast.LENGTH_LONG).show();
             finish();
         }
     }

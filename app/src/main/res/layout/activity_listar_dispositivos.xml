@@ -6,85 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".usuario.ListarDispositivos">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/filtroTipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/buscar_dispositivo"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lista_de_dispositivos"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.581"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/filtroTipo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/buscar_dispositivo"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.079"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <Spinner
+        android:id="@+id/filtroMarca"
+        android:layout_width="256dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/filtroTipo"
+        app:layout_constraintTop_toBottomOf="@+id/filtroTipo" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/lista_de_dispositivos"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.581"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/lupa"
+        android:layout_width="48dp"
+        android:layout_height="46dp"
+        android:background="@drawable/boton_redondeado"
+        android:contentDescription="@string/buscar_dispositivo"
+        app:layout_constraintBottom_toBottomOf="@+id/filtroTipo"
+        app:layout_constraintStart_toEndOf="@+id/filtroTipo"
+        app:layout_constraintTop_toTopOf="@+id/filtroTipo"
+        app:srcCompat="@drawable/buscar" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listaDispositivos"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filtroMarca" />
+    <TextView
+        android:id="@+id/ceroResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_se_encontraron_resultados"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
-                android:id="@+id/filtroMarca"
-                android:layout_width="256dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@+id/filtroTipo"
-                app:layout_constraintTop_toBottomOf="@+id/filtroTipo" />
-
-            <ImageView
-                android:id="@+id/lupa"
-                android:layout_width="48dp"
-                android:layout_height="46dp"
-                android:background="@drawable/boton_redondeado"
-                android:contentDescription="@string/buscar_dispositivo"
-                app:layout_constraintBottom_toBottomOf="@+id/filtroTipo"
-                app:layout_constraintStart_toEndOf="@+id/filtroTipo"
-                app:layout_constraintTop_toTopOf="@+id/filtroTipo"
-                app:srcCompat="@drawable/buscar" />
-
-            <TextView
-                android:id="@+id/ceroResults"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/no_se_encontraron_resultados"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaDispositivos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filtroMarca" />
 </androidx.constraintlayout.widget.ConstraintLayout>

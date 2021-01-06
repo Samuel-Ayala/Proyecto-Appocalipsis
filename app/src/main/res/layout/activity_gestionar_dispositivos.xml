@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="32dp"
-            android:text="Gestionar Dispositivos"
+            android:text="@string/gestionar_dispositivos"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.581"
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="Agregar Dispositivo" />
+            android:text="@string/agregar_dispositivo" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDispositivosUsuarioTI"

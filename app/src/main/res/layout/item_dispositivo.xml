@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
+    android:gravity="center"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -25,11 +25,12 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:contentDescription="@string/imagen"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -38,61 +39,59 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="TextView" />
+                    android:text="@string/textview" />
 
                 <TextView
                     android:id="@+id/marcaEnLista"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="TextView" />
+                    android:text="@string/textview" />
 
                 <TextView
                     android:id="@+id/caracteristicaEnLista"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="TextView" />
+                    android:text="@string/textview" />
 
                 <TextView
                     android:id="@+id/incluyeEnLista"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="TextView" />
+                    android:text="@string/textview" />
 
                 <TextView
                     android:id="@+id/stockEnLista"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="TextView" />
+                    android:text="@string/textview" />
 
                 <Button
                     android:id="@+id/editarDispositivo"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
                     android:layout_marginBottom="10dp"
-                    android:textSize="10dp"
-                    android:text="editar" />
+                    android:text="@string/editar"
+                    android:textSize="14sp" />
 
                 <Button
                     android:id="@+id/eliminarDispositivo"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
 
                     android:layout_marginBottom="10dp"
-                    android:textSize="10dp"
-                    android:text="eliminar" />
+                    android:text="@string/eliminar"
+                    android:textSize="14sp" />
 
             </LinearLayout>
-
-
 
 
         </LinearLayout>

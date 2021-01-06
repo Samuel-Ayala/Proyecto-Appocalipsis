@@ -3,6 +3,8 @@ package pe.edu.pucp.proyecto1_appocalipsis.Adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +16,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
+import pe.edu.pucp.proyecto1_appocalipsis.Entity.Usuario;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
+import pe.edu.pucp.proyecto1_appocalipsis.usuario.ListarDispositivos;
 
 public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReservasAdapterAdmin.ViewHolder>{
 
@@ -85,6 +94,41 @@ public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReser
                             reserva.setJustificacion(justificacion.getText().toString());
                             String newRef = reserva.getId();
                             reference.child("reservas").child(newRef).setValue(reserva);
+
+                            // Obtengo el correo del usuario
+                            final Usuario usr = new Usuario();
+                            DatabaseReference referenciaUsusarios = reference.child("usuarios");
+                            referenciaUsusarios.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                        Usuario usuario = ds.getValue(Usuario.class);
+                                        if(ds.getKey().equals(reserva.getUsuario())){
+                                            Log.d("DENTRO","El ds.getKey() es :"+ds.getKey());
+                                            Log.d("DENTRO","El reserva.getUsuario() es :"+reserva.getUsuario());
+                                            Log.d("DENTRO","El correo es :"+usuario.getCorreo());
+                                            usr.setCorreo(usuario.getCorreo());
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Toast.makeText(context, "Error al setear correo", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
+                            //Mando el correo
+                            String subject = "Justificacion rechazo reserva APPOCALIPSIS";
+
+                            Intent email = new Intent(Intent.ACTION_SEND);
+                            email.putExtra(Intent.EXTRA_EMAIL, new String[]{usr.getCorreo()});
+                            email.putExtra(Intent.EXTRA_SUBJECT, subject);
+                            email.putExtra(Intent.EXTRA_TEXT, reserva.getJustificacion());
+                            email.setType("message/rfc822");
+                            //startActivity(Intent.createChooser(email, "Choose an Email client :"));
+                            context.startActivity(Intent.createChooser(email, "Choose an Email client :"));
                         }
                     });
                     builder.show();

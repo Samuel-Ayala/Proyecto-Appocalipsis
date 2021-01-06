@@ -43,6 +43,7 @@ public class LoginRegistroActivity extends AppCompatActivity {
         if(currentUser!=null)
         {
             Log.d("evaluando", "entro directo con: "+ currentUser.getDisplayName());
+            currentUser.reload();
             if (currentUser.isEmailVerified())
             {
                 Log.d("evaluando", "entro directo con: "+ currentUser.getUid());
@@ -62,6 +63,11 @@ public class LoginRegistroActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), error.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(),"falta validar su correo", Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signOut();
             }
         }
         else

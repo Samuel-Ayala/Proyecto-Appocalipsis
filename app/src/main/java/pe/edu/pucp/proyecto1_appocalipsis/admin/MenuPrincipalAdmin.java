@@ -31,28 +31,6 @@ public class MenuPrincipalAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal_admin);
 
-        /*
-        ///////////////////////Obtencion de datos de Database y guardado de datos/////////////////////////////////
-        Bundle parametros = this.getIntent().getExtras();
-        String email = parametros.getString("email");
-        String rol = parametros.getString(("rol"));
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null){
-            String uid = user.getUid();
-            Log.d("uid",uid);
-        }else {
-            Log.d("Estado del usuario:","no logueado");
-
-        }
-        SharedPreferences.Editor pref = getSharedPreferences("Datos", Context.MODE_PRIVATE).edit();
-        pref.putString("email",email);
-        pref.putString("rol", rol);
-        pref.apply();
-        */
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         ///////////////////////////////////////// Cerrar Sesion //////////////////////////////////////////////
         Button logout;
         logout = findViewById(R.id.cerrarSessionAdmin);

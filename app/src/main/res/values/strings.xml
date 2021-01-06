@@ -30,7 +30,6 @@
     <string name="solicitudes_de_reserva">Solicitudes de reserva</string>
     <string name="subtituloRegistro">A continuación, coloque los datos solicitados para su registro en el sistema. Recuerde verificar su dirección de correo electrónico para finalizar el proceso de registro</string>
     <string-array name="roles">
-        <item>--- Seleccione su rol ---</item>
         <item>alumno</item>
         <item>docente</item>
         <item>administrador</item>

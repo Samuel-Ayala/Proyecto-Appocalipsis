@@ -89,12 +89,13 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
             public void onClick(View v) {
                 /// ELIMINAMOS REFERENCIA DE REALTIME DATABASE
                 DatabaseReference deviceDatabase = FirebaseDatabase.getInstance().getReference().child("dispositivos");
-                String nombreCarpetaDispositivo = dispositivo.getTipo() + "-" + dispositivo.getMarca() + "-" + dispositivo.getCaracteristicas() + "-" + dispositivo.getStock();
+                String nombreCarpetaDispositivo = dispositivo.getFoto();
+                Log.d("FOTOOOOOO",dispositivo.getFoto());
                 deviceDatabase.child(nombreCarpetaDispositivo).removeValue();
 
                 /// ELIMINAMOS REFERENCIA DE STORAGE
-                StorageReference stReference = FirebaseStorage.getInstance().getReference().child("fotos");
-                stReference.child(nombreCarpetaDispositivo).delete();
+                //StorageReference stReference = FirebaseStorage.getInstance().getReference().child("fotos");
+                //stReference.child(nombreCarpetaDispositivo).delete();
                 Intent intent = new Intent(context, GestionarDispositivos.class);
                 context.startActivity(intent);
             }

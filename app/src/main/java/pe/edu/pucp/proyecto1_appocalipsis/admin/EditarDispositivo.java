@@ -86,11 +86,11 @@ public class EditarDispositivo extends AppCompatActivity {
                 dialog.setMessage("Actualizando información del dispositivo ...");
                 dialog.setCancelable(false);
                 dialog.show();
-                final String nombreCarpetaDispositivo = dispositivo.getTipo() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString();
+                //final String nombreCarpetaDispositivo = dispositivo.getTipo() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString();
 
                     if (rutaDeArchivo != null){
                         StorageReference stReference = FirebaseStorage.getInstance().getReference();
-                        final StorageReference fotoRef = stReference.child("fotos").child(nombreCarpetaDispositivo);
+                        final StorageReference fotoRef = stReference.child("fotos").child(dispositivo.getFoto());
                         fotoRef.putFile(rutaDeArchivo).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                             @Override
                             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -103,9 +103,10 @@ public class EditarDispositivo extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
                                 Uri downloadLink = task.getResult();
-                                final DatabaseReference currentUserDB = deviceDatabase.child(nombreCarpetaDispositivo);
+                                final DatabaseReference currentUserDB = deviceDatabase.child(dispositivo.getFoto());
 
                                 Dispositivo d = new Dispositivo();
+                                d.setTipo(dispositivo.getTipo());
                                 d.setStock(Integer.parseInt(stock.getText().toString()));
                                 d.setMarca(marca.getText().toString());
                                 d.setIncluye(incluye.getText().toString());
@@ -117,13 +118,21 @@ public class EditarDispositivo extends AppCompatActivity {
                         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
+                                stock.setText("");
+                                marca.setText("");
+                                incluye.setText("");
+                                caracteristicas.setText("");
+
                                 dialog.dismiss();
                                 Toast.makeText(getApplicationContext(), "Dispositivo actualizado exitosamente", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(EditarDispositivo.this, GestionarDispositivos.class);
+                                EditarDispositivo.this.startActivity(intent);
+                                finish();
                             }
                         });
                     }else if (imbytes != null){
                         StorageReference stReference = FirebaseStorage.getInstance().getReference();
-                        final StorageReference fotoRef = stReference.child("fotos").child(nombreCarpetaDispositivo);
+                        final StorageReference fotoRef = stReference.child("fotos").child(dispositivo.getFoto());
                         fotoRef.putBytes(imbytes).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                             @Override
                             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -136,9 +145,10 @@ public class EditarDispositivo extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
                                 Uri downloadLink = task.getResult();
-                                final DatabaseReference currentUserDB = deviceDatabase.child(nombreCarpetaDispositivo);
+                                final DatabaseReference currentUserDB = deviceDatabase.child(dispositivo.getFoto());
 
                                 Dispositivo d = new Dispositivo();
+                                d.setTipo(dispositivo.getTipo());
                                 d.setStock(Integer.parseInt(stock.getText().toString()));
                                 d.setMarca(marca.getText().toString());
                                 d.setIncluye(incluye.getText().toString());
@@ -150,12 +160,42 @@ public class EditarDispositivo extends AppCompatActivity {
                         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
+                                stock.setText("");
+                                marca.setText("");
+                                incluye.setText("");
+                                caracteristicas.setText("");
+
                                 dialog.dismiss();
                                 Toast.makeText(getApplicationContext(), "Dispositivo actualizado exitosamente", Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(EditarDispositivo.this, GestionarDispositivos.class);
+                                EditarDispositivo.this.startActivity(intent);
+                                finish();
                             }
                         });
                     }else {
-                        Toast.makeText(getApplicationContext(), "Debe colocar una fotografía del dispositivo", Toast.LENGTH_SHORT).show();
+                        final DatabaseReference currentUserDB = deviceDatabase.child(dispositivo.getFoto());
+                        Dispositivo d = new Dispositivo();
+                        d.setTipo(dispositivo.getTipo());
+                        d.setStock(Integer.parseInt(stock.getText().toString()));
+                        d.setMarca(marca.getText().toString());
+                        d.setIncluye(incluye.getText().toString());
+                        d.setImagen(dispositivo.getImagen());
+                        d.setCaracteristicas(caracteristicas.getText().toString());
+                        d.setFoto(dispositivo.getFoto());
+                        currentUserDB.setValue(d);
+
+                        stock.setText("");
+                        marca.setText("");
+                        incluye.setText("");
+                        caracteristicas.setText("");
+
+                        dialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Dispositivo actualizado exitosamente", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(EditarDispositivo.this, GestionarDispositivos.class);
+                        EditarDispositivo.this.startActivity(intent);
+                        finish();
                     }
             }
         });
@@ -175,28 +215,12 @@ public class EditarDispositivo extends AppCompatActivity {
             public void onClick(View v) {
                 if (EditarDispositivo.this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
                     int permiso = ContextCompat.checkSelfPermission(EditarDispositivo.this, Manifest.permission.CAMERA);
-                    int permiso2 = ContextCompat.checkSelfPermission(EditarDispositivo.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                    int permiso3 = ContextCompat.checkSelfPermission(EditarDispositivo.this, Manifest.permission.READ_EXTERNAL_STORAGE);
 
                     if (permiso == PackageManager.PERMISSION_GRANTED) {
                         tomarFoto();
                     } else {
                         ActivityCompat.requestPermissions(EditarDispositivo.this, new String[]{Manifest.permission.CAMERA},3);
                     }
-
-                    if (permiso2 == PackageManager.PERMISSION_GRANTED) {
-                        tomarFoto();
-                    } else {
-                        ActivityCompat.requestPermissions(EditarDispositivo.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},3);
-                    }
-
-                    if (permiso3 == PackageManager.PERMISSION_GRANTED) {
-                        tomarFoto();
-                    } else {
-                        ActivityCompat.requestPermissions(EditarDispositivo.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},3);
-                    }
-
-
                 }else {
                     Toast.makeText(getApplicationContext(), "Error: este dispositivo no tiene camara", Toast.LENGTH_SHORT).show();
                 }
@@ -224,19 +248,19 @@ public class EditarDispositivo extends AppCompatActivity {
             imbytes = null;
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),rutaDeArchivo);
-                ImageView imagenDispositivo = (ImageView) findViewById(R.id.imagenDeDispositivoAAgregar);
+                ImageView imagenDispositivo = (ImageView) findViewById(R.id.imagenDeDispositivoAAgregarEdit);
                 imagenDispositivo.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        if (requestCode == 2 && data != null && data.getData() != null){
+        if (requestCode == 2){
             try {
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-                ImageView imagenDispositivo = (ImageView) findViewById(R.id.imagenDeDispositivoAAgregar);
+                ImageView imagenDispositivo = (ImageView) findViewById(R.id.imagenDeDispositivoAAgregarEdit);
                 imagenDispositivo.setImageBitmap(imageBitmap);
 
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();

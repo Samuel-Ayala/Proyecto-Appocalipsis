@@ -159,7 +159,7 @@ public class LoginRegistroActivity extends AppCompatActivity {
 
                     }else {
                         dialog.dismiss();
-                        mostrarError();
+                        Toast.makeText(getApplicationContext(),"Error en el proceso: posee problemas de conexion o su cuenta ya se encuentra registrada", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -189,6 +189,18 @@ public class LoginRegistroActivity extends AppCompatActivity {
         }else {
             //Toast.makeText(getApplicationContext(),"Ingrese sus credenciales una vez haya verificado su dirección de correo electrónico a través del enlace enviado a " + email, Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void errorDeCodigo() {
+        Toast.makeText(getApplicationContext(),"Debe ingresar un codigo válido de 8 caracteres", Toast.LENGTH_LONG).show();
+    }
+
+    public void errorDeRol() {
+        Toast.makeText(getApplicationContext(),"Debe seleccionar su rol", Toast.LENGTH_LONG).show();
+    }
+
+    public void errorDeLlenadoDeDatos() {
+        Toast.makeText(getApplicationContext(),"Debe llenar todos los campos", Toast.LENGTH_LONG).show();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

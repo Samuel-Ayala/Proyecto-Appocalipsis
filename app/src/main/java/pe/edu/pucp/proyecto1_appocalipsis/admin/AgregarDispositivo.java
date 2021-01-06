@@ -117,6 +117,11 @@ public class AgregarDispositivo extends AppCompatActivity {
                         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
+                                stock.setText("");
+                                marca.setText("");
+                                incluye.setText("");
+                                caracteristicas.setText("");
+
                                 dialog.dismiss();
                                 Toast.makeText(getApplicationContext(), "Dispositivo agregado al inventario exitosamente", Toast.LENGTH_SHORT).show();
                             }
@@ -151,6 +156,11 @@ public class AgregarDispositivo extends AppCompatActivity {
                         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
+                                stock.setText("");
+                                marca.setText("");
+                                incluye.setText("");
+                                caracteristicas.setText("");
+
                                 dialog.dismiss();
                                 Toast.makeText(getApplicationContext(), "Dispositivo agregado al inventario exitosamente", Toast.LENGTH_SHORT).show();
                             }
@@ -166,6 +176,11 @@ public class AgregarDispositivo extends AppCompatActivity {
                         d.setCaracteristicas(caracteristicas.getText().toString());
                         d.setFoto(tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
                         currentUserDB.setValue(d);
+
+                        stock.setText("");
+                        marca.setText("");
+                        incluye.setText("");
+                        caracteristicas.setText("");
                         dialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Dispositivo agregado al inventario exitosamente", Toast.LENGTH_SHORT).show();
                     }

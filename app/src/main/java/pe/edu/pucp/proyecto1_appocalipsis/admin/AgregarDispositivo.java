@@ -55,7 +55,7 @@ public class AgregarDispositivo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_dispositivo);
 
-        final EditText marca, caracteristicas, incluye, stock;
+        final EditText marca, caracteristicas, incluye, stock, otroDispositivo;
         final Button agregarDispositivo, cargarFoto, tomarFoto;
         final Spinner tipo;
         ImageView imagenDispositivo;
@@ -72,10 +72,20 @@ public class AgregarDispositivo extends AppCompatActivity {
         incluye = (EditText) findViewById(R.id.incluyeDispositivo);
         stock = (EditText) findViewById(R.id.stockDispositivo);
         imagenDispositivo = (ImageView) findViewById(R.id.imagenDeDispositivoAAgregar);
+        otroDispositivo = (EditText) findViewById(R.id.otroDispositivoc);
 
         long date = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("MMM MM dd, yyyy h:mm a");
         final String dateString = sdf.format(date);
+
+        /////////////////////////////////////// Validamos el tipo de dispositivo ///////////////////////////////////////////////////
+        final String tipoDispositivo;
+        if (otroDispositivo.getText().toString().isEmpty()){
+            tipoDispositivo = tipo.getSelectedItem().toString();
+        }else {
+            tipoDispositivo = otroDispositivo.getText().toString();
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         agregarDispositivo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,9 +94,9 @@ public class AgregarDispositivo extends AppCompatActivity {
                 dialog.setMessage("Añadiendo dispositivo al inventario ...");
                 dialog.setCancelable(false);
                 dialog.show();
-                final String nombreCarpetaDispositivo = tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString();
+                final String nombreCarpetaDispositivo = tipoDispositivo + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString();
 
-                if (!marca.getText().toString().isEmpty() && !tipo.getSelectedItem().toString().isEmpty() && !caracteristicas.getText().toString().isEmpty() && !incluye.getText().toString().isEmpty() && !stock.getText().toString().isEmpty()) {
+                if (!marca.getText().toString().isEmpty() && !caracteristicas.getText().toString().isEmpty() && !incluye.getText().toString().isEmpty() && !stock.getText().toString().isEmpty()) {
                     if (rutaDeArchivo != null) {
                         StorageReference stReference = FirebaseStorage.getInstance().getReference();
                         final StorageReference fotoRef = stReference.child("fotos").child(nombreCarpetaDispositivo);
@@ -105,13 +115,13 @@ public class AgregarDispositivo extends AppCompatActivity {
                                 final DatabaseReference currentUserDB = userDatabase.child(nombreCarpetaDispositivo);
 
                                 Dispositivo d = new Dispositivo();
-                                d.setTipo(tipo.getSelectedItem().toString());
+                                d.setTipo(tipoDispositivo);
                                 d.setStock(Integer.parseInt(stock.getText().toString()));
                                 d.setMarca(marca.getText().toString());
                                 d.setIncluye(incluye.getText().toString());
                                 d.setImagen(downloadLink.toString());
                                 d.setCaracteristicas(caracteristicas.getText().toString());
-                                d.setFoto(tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
+                                d.setFoto(tipoDispositivo + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
                                 currentUserDB.setValue(d);
                             }
                         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -144,13 +154,13 @@ public class AgregarDispositivo extends AppCompatActivity {
                                 final DatabaseReference currentUserDB = userDatabase.child(nombreCarpetaDispositivo);
 
                                 Dispositivo d = new Dispositivo();
-                                d.setTipo(tipo.getSelectedItem().toString());
+                                d.setTipo(tipoDispositivo);
                                 d.setStock(Integer.parseInt(stock.getText().toString()));
                                 d.setMarca(marca.getText().toString());
                                 d.setIncluye(incluye.getText().toString());
                                 d.setImagen(downloadLink.toString());
                                 d.setCaracteristicas(caracteristicas.getText().toString());
-                                d.setFoto(tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
+                                d.setFoto(tipoDispositivo + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
                                 currentUserDB.setValue(d);
                             }
                         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -168,13 +178,13 @@ public class AgregarDispositivo extends AppCompatActivity {
                     } else {
                         final DatabaseReference currentUserDB = userDatabase.child(nombreCarpetaDispositivo);
                         Dispositivo d = new Dispositivo();
-                        d.setTipo(tipo.getSelectedItem().toString());
+                        d.setTipo(tipoDispositivo);
                         d.setStock(Integer.parseInt(stock.getText().toString()));
                         d.setMarca(marca.getText().toString());
                         d.setIncluye(incluye.getText().toString());
                         d.setImagen("https://firebasestorage.googleapis.com/v0/b/appocalipsis.appspot.com/o/fotos%2Fimagen_no-disponible.jpg?alt=media&token=fe6cb6fd-a2fa-49f0-95d9-6a5e78b617ac");
                         d.setCaracteristicas(caracteristicas.getText().toString());
-                        d.setFoto(tipo.getSelectedItem().toString() + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
+                        d.setFoto(tipoDispositivo + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString());
                         currentUserDB.setValue(d);
 
                         stock.setText("");

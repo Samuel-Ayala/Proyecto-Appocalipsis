@@ -35,12 +35,10 @@
         <item>administrador</item>
     </string-array>
     <string-array name="dispositivos">
-        <item>--- Seleccione el tipo de dispositivo ---</item>
         <item>Laptop</item>
         <item>Tableta</item>
         <item>Celular</item>
         <item>Monitor</item>
-        <item>Otro</item>
     </string-array>
     <string name="spinneroles_titulo">Rol</string>
     <!-- TODO: Remove or change this placeholder text -->

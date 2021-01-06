@@ -68,10 +68,7 @@ public class SolicitudesDePrestamo extends AppCompatActivity {
 
                     Reserva reserva = ds.getValue(Reserva.class);
 
-                    Log.d("RESERVAS","el valor de reserva.getUsuario() es : "+ reserva.getUsuario());
-                    Log.d("RESERVAS","el valor de currentUser.getUid() es : "+ currentUser.getUid());
-                    Log.d("RESERVAS","========================");
-                    Log.d("RESERVAS","el valor de reserva.getEstado() es : "+ reserva.getEstado());
+
                     if(((reserva.getUsuario()).equals(currentUser.getUid()))&&((reserva.getEstado()).equals("Procesando"))){
                         reservas.add(reserva);
                     }

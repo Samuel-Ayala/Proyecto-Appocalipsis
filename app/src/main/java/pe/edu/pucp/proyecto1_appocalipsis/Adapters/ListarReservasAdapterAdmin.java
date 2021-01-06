@@ -1,12 +1,10 @@
 package pe.edu.pucp.proyecto1_appocalipsis.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,16 +14,15 @@ import java.util.List;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
-import pe.edu.pucp.proyecto1_appocalipsis.usuario.MasDetalles;
 
-public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAdapter.ViewHolder>{
+public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReservasAdapterAdmin.ViewHolder>{
 
     private final List<Reserva> listaReservas;
-    private Reserva[] reservas;
+    //private Reserva[] reservas;
     private Context context;
 
 
-    public ListarReservasAdapter(List<Reserva> listaReservas, Context context) {
+    public ListarReservasAdapterAdmin(List<Reserva> listaReservas, Context context) {
         this.listaReservas = listaReservas;
         //this.reservas = reservas;
         this.context = context;
@@ -33,9 +30,9 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
 
     @NonNull
     @Override
-    public ListarReservasAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.reserva,parent,false);
-        ListarReservasAdapter.ViewHolder viewHolder = new ListarReservasAdapter.ViewHolder(itemView);
+    public ListarReservasAdapterAdmin.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(context).inflate(R.layout.reserva_admin,parent,false);
+        ListarReservasAdapterAdmin.ViewHolder viewHolder = new ListarReservasAdapterAdmin.ViewHolder(itemView);
         ViewHolder vHolder = new ViewHolder(itemView);
         return vHolder;
     }
@@ -54,19 +51,19 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
         //Aqui va la logica de los botones de aceptar o rechazar la reserva
 
 
-        holder.aprobar.setOnClickListener(new View.OnClickListener() {
-
+        holder.aprobar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 reserva.setEstado("aceptado");
             }
         });
 
-        holder.rechazar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reserva.setEstado("rechazado");
-            }
+        holder.rechazar.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    reserva.setEstado("rechazado");
+                }
+
         });
 
     }
@@ -87,10 +84,9 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
         Context context;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            TextView tipo = itemView.findViewById(R.id.tipoReserva);
-            TextView marca = itemView.findViewById(R.id.marcaReserva);
-            TextView estado = itemView.findViewById(R.id.estadoReserva);
 
+            aprobar = itemView.findViewById(R.id.aprobar);
+            rechazar = itemView.findViewById(R.id.rechazar);
 
             txtDireccion= itemView.findViewById(R.id.direccionReserva);
             txtEstado = itemView.findViewById(R.id.estadoReserva);

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosUserAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Adapters.ListarReservasAdapter;
+import pe.edu.pucp.proyecto1_appocalipsis.Adapters.ListarReservasAdapterAdmin;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
@@ -42,14 +43,16 @@ public class SolicitudesReserva extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    //Dispositivo dispositivo = ds.getValue(Dispositivo.class);
                     Reserva reserva = ds.getValue(Reserva.class);
+
+                    if((reserva.getEstado()).equals("Procesando")){
                         reservas.add(reserva);
+                    }
                 }
 
                 //Poner los dispositivos en el recycler view
-                ListarReservasAdapter listarReservasAdapter = new ListarReservasAdapter(reservas,SolicitudesReserva.this);
-                listarEnRV(listarReservasAdapter);
+                ListarReservasAdapterAdmin listarReservasAdapterAdmin = new ListarReservasAdapterAdmin(reservas,SolicitudesReserva.this);
+                listarEnRV(listarReservasAdapterAdmin);
 
             }
 
@@ -61,10 +64,10 @@ public class SolicitudesReserva extends AppCompatActivity {
 
     }
     //Para listar en el RV
-    public void listarEnRV(ListarReservasAdapter listarReservasAdapter)
+    public void listarEnRV(ListarReservasAdapterAdmin listarReservasAdapterAdmin)
     {
-        RecyclerView rv = findViewById(R.id.listaDispositivos);
-        rv.setAdapter(listarReservasAdapter);
+        RecyclerView rv = findViewById(R.id.rvSolicitudesReserva);
+        rv.setAdapter(listarReservasAdapterAdmin);
         rv.setLayoutManager(new LinearLayoutManager(SolicitudesReserva.this));
     }
 }

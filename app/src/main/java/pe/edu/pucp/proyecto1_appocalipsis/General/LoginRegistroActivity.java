@@ -68,6 +68,8 @@ public class LoginRegistroActivity extends AppCompatActivity {
             {
                 Toast.makeText(getApplicationContext(),"falta validar su correo", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
+                FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.contenedor_login_registro, new Login_Fragment()).commit();
             }
         }
         else

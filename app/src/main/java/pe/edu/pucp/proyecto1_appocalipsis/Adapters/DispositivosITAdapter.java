@@ -9,17 +9,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import java.util.List;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
+import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.admin.EditarDispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 import pe.edu.pucp.proyecto1_appocalipsis.admin.GestionarDispositivos;
@@ -75,12 +80,12 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
 
         Glide.with(context).load(dispositivo.getImagen()).into(holder.imagenDispositivo);
 
+        final GestionarDispositivos gd = (GestionarDispositivos) context;
         holder.editarDispositivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditarDispositivo.class);
                 intent.putExtra("Dispositivo",dispositivo);
-                GestionarDispositivos gd = (GestionarDispositivos) context;
                 gd.startActivityForResult(intent,2);
             }
         });
@@ -90,15 +95,36 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
             public void onClick(View v) {
                 /// ELIMINAMOS REFERENCIA DE REALTIME DATABASE
                 DatabaseReference deviceDatabase = FirebaseDatabase.getInstance().getReference().child("dispositivos");
-                String nombreCarpetaDispositivo = dispositivo.getFoto();
+                final String nombreCarpetaDispositivo = dispositivo.getFoto();
                 Log.d("FOTOOOOOO",dispositivo.getFoto());
                 deviceDatabase.child(nombreCarpetaDispositivo).removeValue();
+
+                final DatabaseReference cancelacionDeReservas = FirebaseDatabase.getInstance().getReference().child("reservas");
+                cancelacionDeReservas.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot ds : snapshot.getChildren())
+                        {
+                            Reserva reserva = ds.getValue(Reserva.class);
+                            if (reserva.getDispositivo().getFoto().equalsIgnoreCase(nombreCarpetaDispositivo) &&
+                                reserva.getEstado().equalsIgnoreCase("Procesando"))
+                            {
+                                reserva.setJustificacion("El dispositivo ya no se encuentra disponible");
+                                reserva.setEstado("rechazado");
+                                cancelacionDeReservas.child(reserva.id).setValue(reserva);
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(context,error.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
 
                 /// ELIMINAMOS REFERENCIA DE STORAGE
                 //StorageReference stReference = FirebaseStorage.getInstance().getReference().child("fotos");
                 //stReference.child(nombreCarpetaDispositivo).delete();
-                Intent intent = new Intent(context, GestionarDispositivos.class);
-                context.startActivity(intent);
+                gd.listarDispositivos();
             }
         });
     }

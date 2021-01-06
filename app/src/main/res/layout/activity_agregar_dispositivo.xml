@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/style_spinner"
-                    back
+
                     android:entries="@array/dispositivos"
                     app:layout_constraintBottom_toBottomOf="@+id/textView12"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -51,14 +51,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/textoTipo"
                         android:text="Otro: "
                         android:paddingLeft="5dp"
+                        android:visibility="gone"
                         android:textSize="18dp"/>
                     <EditText
                         android:id="@+id/otroDispositivoc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:visibility="gone"
                         android:textSize="18dp"
                         android:ems="10"
                         android:inputType="textPersonName"

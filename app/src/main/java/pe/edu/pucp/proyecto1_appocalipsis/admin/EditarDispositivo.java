@@ -193,8 +193,7 @@ public class EditarDispositivo extends AppCompatActivity {
                         dialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Dispositivo actualizado exitosamente", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(EditarDispositivo.this, GestionarDispositivos.class);
-                        EditarDispositivo.this.startActivity(intent);
+                        setResult(RESULT_OK);
                         finish();
                     }
             }

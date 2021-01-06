@@ -1,6 +1,7 @@
 package pe.edu.pucp.proyecto1_appocalipsis.admin;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,25 +62,6 @@ public class GestionarDispositivos extends AppCompatActivity {
                     for (DataSnapshot data : snapshot.getChildren()) {
 
                         Dispositivo d = data.getValue(Dispositivo.class);
-                        /*
-                        Dispositivo d = new Dispositivo();
-                        Log.d("INFO APP",d.getMarca()+d.getStock());
-
-                        String urlFoto = data.child("foto").getValue().toString();
-                        String caract = data.child("caracteristicas").getValue().toString();
-                        String incluye = data.child("incluye").getValue().toString();
-                        String marca = data.child("marca").getValue().toString();
-                        String stock = data.child("stock").getValue().toString();
-                        String tipo = data.child("tipo").getValue().toString();
-
-                        d.setCaracteristicas(caract);
-                        d.setFoto(urlFoto);
-                        d.setIncluye(incluye);
-                        d.setMarca(marca);
-                        d.setStock(Integer.parseInt(stock));
-                        d.setTipo(tipo);
-                         */
-
                         listaDispos.add(d);
                     }
                     dispositivosITAdapter = new DispositivosITAdapter(listaDispos,GestionarDispositivos.this);
@@ -100,5 +82,14 @@ public class GestionarDispositivos extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.recyclerDispositivosUsuarioTI);
         rv.setAdapter(dispositivosITAdapter);
         rv.setLayoutManager(new LinearLayoutManager(GestionarDispositivos.this));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==2)
+        {
+            listarDispositivos();
+        }
     }
 }

@@ -76,6 +76,7 @@ public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReser
                 //Toast.makeText("Se acepto el dispositivo", "",Toast.LENGTH_SHORT).show();
                 String newRef = reserva.getId();
                 reference.child("reservas").child(newRef).setValue(reserva);
+                Toast.makeText(context,"Se acepto el prestamo correctamente",Toast.LENGTH_SHORT).show();
             }
         });
 

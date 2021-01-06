@@ -5,7 +5,6 @@
     android:id="@+id/contenedor_login_registro"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#202745"
     tools:context=".General.LoginRegistroActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,8 +25,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import pe.edu.pucp.proyecto1_appocalipsis.Adapters.ListarReservasAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
+import pe.edu.pucp.proyecto1_appocalipsis.General.LoginRegistroActivity;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Usuario;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 import pe.edu.pucp.proyecto1_appocalipsis.admin.SolicitudesReserva;
@@ -128,8 +131,13 @@ public class SolicitudesDePrestamo extends AppCompatActivity {
                 return true;
 
             case R.id.solicitudesReservaBar:
-                intent = new Intent(getApplicationContext(),SolicitudesDePrestamo.class);
-                startActivity(intent);
+                return true;
+
+            case R.id.cerrarSesionBar:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent2 = new Intent(getApplicationContext(), LoginRegistroActivity.class);
+                startActivity(intent2);
+                finish();
                 return true;
 
         }

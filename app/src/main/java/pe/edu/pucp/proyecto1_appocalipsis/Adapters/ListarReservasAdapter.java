@@ -21,7 +21,6 @@ import pe.edu.pucp.proyecto1_appocalipsis.usuario.MasDetalles;
 public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAdapter.ViewHolder>{
 
     private final List<Reserva> listaReservas;
-    private Reserva[] reservas;
     private Context context;
 
 

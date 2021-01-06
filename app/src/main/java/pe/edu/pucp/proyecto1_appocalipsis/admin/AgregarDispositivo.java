@@ -125,6 +125,8 @@ public class AgregarDispositivo extends AppCompatActivity {
 
                 if (esOtro) {
                     tipoDispositivo[0] = otroDispositivo.getText().toString();
+                }else {
+                    tipoDispositivo[0] = tipo.getSelectedItem().toString();
                 }
 
                     final String nombreCarpetaDispositivo = tipoDispositivo[0] + "-" + marca.getText().toString() + "-" + caracteristicas.getText().toString() + "-" + stock.getText().toString();

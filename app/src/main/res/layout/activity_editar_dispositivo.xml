@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo2"
     tools:context=".admin.EditarDispositivo">
 
     <ScrollView
@@ -17,6 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:layout_marginTop="32dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:orientation="vertical">
@@ -85,10 +87,11 @@
 
                     <Button
                         android:id="@+id/cargarFotoEdit"
-                        android:layout_width="wrap_content"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="6dp"
                         android:text="@string/cargar_foto"
+                        android:background="@drawable/boton_registro"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.498"
@@ -96,10 +99,11 @@
 
                     <Button
                         android:id="@+id/tomarFotoEdit"
-                        android:layout_width="wrap_content"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
                         android:text="@string/tomar_foto"
+                        android:background="@drawable/boton_registro"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.498"
@@ -112,6 +116,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="@string/actualizar"
+                    android:background="@drawable/boton_redondeado"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"

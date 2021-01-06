@@ -14,6 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
@@ -24,7 +27,7 @@ public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReser
     private final List<Reserva> listaReservas;
     //private Reserva[] reservas;
     private Context context;
-
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
     public ListarReservasAdapterAdmin(List<Reserva> listaReservas, Context context) {
         this.listaReservas = listaReservas;
@@ -59,7 +62,11 @@ public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReser
             @Override
             public void onClick(View v) {
                 reserva.setEstado("aceptado");
+                int a = reserva.getDispositivo().getStock();
+                reserva.getDispositivo().setStock(a-1);
                 //Toast.makeText("Se acepto el dispositivo", "",Toast.LENGTH_SHORT).show();
+                String newRef = reserva.getId();
+                reference.child("reservas").child(newRef).setValue(reserva);
             }
         });
 
@@ -76,8 +83,12 @@ public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReser
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             reserva.setJustificacion(justificacion.getText().toString());
+                            String newRef = reserva.getId();
+                            reference.child("reservas").child(newRef).setValue(reserva);
                         }
                     });
+                    builder.show();
+
                 }
         });
 
@@ -109,10 +120,6 @@ public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReser
             txtTipo = itemView.findViewById(R.id.tipoReserva);
             txtMarca = itemView.findViewById(R.id.marcaReserva);
 
-
-            //tipo.setText(reserva.getDispositivo().getTipo());
-            //marca.setText(reserva.getDispositivo().getMarca());
-            //estado.setText(reserva.getEstado());
 
         }
     }

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.Login_Fragment">
+    tools:context=".Fragments.Login_Fragment"
+    android:background="@drawable/fondo2">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -75,6 +76,7 @@
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/boton_redondeado"
                 android:text="@string/ingresar"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
                 app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"

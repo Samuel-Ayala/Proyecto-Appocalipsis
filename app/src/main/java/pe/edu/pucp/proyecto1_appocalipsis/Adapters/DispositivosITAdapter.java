@@ -80,7 +80,8 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditarDispositivo.class);
                 intent.putExtra("Dispositivo",dispositivo);
-                context.startActivity(intent);
+                GestionarDispositivos gd = (GestionarDispositivos) context;
+                gd.startActivityForResult(intent,2);
             }
         });
 
@@ -89,12 +90,13 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
             public void onClick(View v) {
                 /// ELIMINAMOS REFERENCIA DE REALTIME DATABASE
                 DatabaseReference deviceDatabase = FirebaseDatabase.getInstance().getReference().child("dispositivos");
-                String nombreCarpetaDispositivo = dispositivo.getTipo() + "-" + dispositivo.getMarca() + "-" + dispositivo.getCaracteristicas() + "-" + dispositivo.getStock();
+                String nombreCarpetaDispositivo = dispositivo.getFoto();
+                Log.d("FOTOOOOOO",dispositivo.getFoto());
                 deviceDatabase.child(nombreCarpetaDispositivo).removeValue();
 
                 /// ELIMINAMOS REFERENCIA DE STORAGE
-                StorageReference stReference = FirebaseStorage.getInstance().getReference().child("fotos");
-                stReference.child(nombreCarpetaDispositivo).delete();
+                //StorageReference stReference = FirebaseStorage.getInstance().getReference().child("fotos");
+                //stReference.child(nombreCarpetaDispositivo).delete();
                 Intent intent = new Intent(context, GestionarDispositivos.class);
                 context.startActivity(intent);
             }

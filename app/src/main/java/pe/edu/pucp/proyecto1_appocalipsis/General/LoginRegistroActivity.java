@@ -180,15 +180,12 @@ public class LoginRegistroActivity extends AppCompatActivity {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         DatabaseReference userDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
                         DatabaseReference currentUserDB = userDatabase.child(user.getUid());
-                        currentUserDB.child("nombre completo").setValue(usuario.getNombre());
-                        currentUserDB.child("codigo").setValue(usuario.getCodigo());
-                        currentUserDB.child("rol").setValue(usuario.getRol());
+                        currentUserDB.setValue(usuario);
 
                         user.sendEmailVerification();
                         finish();
                         startActivity(getIntent());
                         Toast.makeText(getApplicationContext(),"Verifique su direccion de correo electrónico en el enlace enviado a " + usuario.getCorreo(), Toast.LENGTH_LONG).show();
-
                     }else {
                         dialog.dismiss();
                         Toast.makeText(getApplicationContext(),"Error en el proceso: posee problemas de conexion o su cuenta ya se encuentra registrada", Toast.LENGTH_SHORT).show();

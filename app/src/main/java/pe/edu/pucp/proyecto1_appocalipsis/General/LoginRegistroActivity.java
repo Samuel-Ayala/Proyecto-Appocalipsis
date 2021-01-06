@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,14 +31,45 @@ import pe.edu.pucp.proyecto1_appocalipsis.usuario.MenuPrincipalUsuario;
 
 public class LoginRegistroActivity extends AppCompatActivity {
 
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.contenedor_login_registro, new Login_Fragment()).commit();
+        if(currentUser!=null)
+        {
+            Log.d("evaluando", "entro directo con: "+ currentUser.getDisplayName());
+            if (currentUser.isEmailVerified())
+            {
+                Log.d("evaluando", "entro directo con: "+ currentUser.getUid());
+                reference.child("usuarios").child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Usuario usuario = snapshot.getValue(Usuario.class);
+                        Log.d("evaluando", "entro directo con: "+ usuario.getRol());
+                        Intent intent;
+                        if (usuario.getRol().equalsIgnoreCase("Usuario-TI")) intent= new Intent(getApplicationContext(), MenuPrincipalAdmin.class);
+                        else intent= new Intent(getApplicationContext(), MenuPrincipalUsuario.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+        else
+        {
+            Log.d("evaluando", "no entro");
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.contenedor_login_registro, new Login_Fragment()).commit();
+            //sessionMantenerDatos();
+        }
 
-        sessionMantenerDatos();
     }
 
     ////////////////////////////////  INICIO DE SESION  //////////////////////////////////////////////
@@ -110,12 +142,9 @@ public class LoginRegistroActivity extends AppCompatActivity {
     }
 
     public void ingresoExitosoLoginUsuarioCliente(String inputEmail, String rol){
-        Bundle params = new Bundle();
-        params.putString("email",inputEmail);
-        params.putString("rol",rol);
         Intent i = new Intent(getApplicationContext(), MenuPrincipalUsuario.class);
-        i.putExtras(params);
         startActivity(i);
+        finish();
     }
 
     public void ingresoExitosoLoginUsuarioTI(String inputEmail, String rol){
@@ -125,6 +154,7 @@ public class LoginRegistroActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), MenuPrincipalAdmin.class);
         i.putExtras(params);
         startActivity(i);
+        finish();
     }
 
 

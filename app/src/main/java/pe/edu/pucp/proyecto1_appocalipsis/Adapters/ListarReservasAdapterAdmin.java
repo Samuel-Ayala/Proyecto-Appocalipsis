@@ -1,13 +1,15 @@
 package pe.edu.pucp.proyecto1_appocalipsis.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,15 +18,15 @@ import java.util.List;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
-import pe.edu.pucp.proyecto1_appocalipsis.usuario.MasDetalles;
 
-public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAdapter.ViewHolder>{
+public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReservasAdapterAdmin.ViewHolder>{
 
     private final List<Reserva> listaReservas;
+    //private Reserva[] reservas;
     private Context context;
 
 
-    public ListarReservasAdapter(List<Reserva> listaReservas, Context context) {
+    public ListarReservasAdapterAdmin(List<Reserva> listaReservas, Context context) {
         this.listaReservas = listaReservas;
         //this.reservas = reservas;
         this.context = context;
@@ -32,9 +34,9 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
 
     @NonNull
     @Override
-    public ListarReservasAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.reserva,parent,false);
-        ListarReservasAdapter.ViewHolder viewHolder = new ListarReservasAdapter.ViewHolder(itemView);
+    public ListarReservasAdapterAdmin.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(context).inflate(R.layout.reserva_admin,parent,false);
+        ListarReservasAdapterAdmin.ViewHolder viewHolder = new ListarReservasAdapterAdmin.ViewHolder(itemView);
         ViewHolder vHolder = new ViewHolder(itemView);
         return vHolder;
     }
@@ -49,6 +51,35 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
         holder.txtEstado.setText(reserva.getEstado());
         holder.txtTipo.setText(reserva.getDispositivo().getTipo());
         holder.txtMarca.setText(reserva.getDispositivo().getMarca());
+
+        //Aqui va la logica de los botones de aceptar o rechazar la reserva
+
+
+        holder.aprobar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                reserva.setEstado("aceptado");
+                //Toast.makeText("Se acepto el dispositivo", "",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.rechazar.setOnClickListener(new View.OnClickListener(){
+            @Override
+                public void onClick(View v) {
+                    reserva.setEstado("rechazado");
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Justificacion del rechazo");
+                    builder.setMessage("Ingrese la justificacion") ;
+                    final EditText justificacion = new EditText(context);
+                    builder.setView(justificacion);
+                    builder.setPositiveButton("confirmar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            reserva.setJustificacion(justificacion.getText().toString());
+                        }
+                    });
+                }
+        });
 
     }
 
@@ -68,10 +99,9 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
         Context context;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            TextView tipo = itemView.findViewById(R.id.tipoReserva);
-            TextView marca = itemView.findViewById(R.id.marcaReserva);
-            TextView estado = itemView.findViewById(R.id.estadoReserva);
 
+            aprobar = itemView.findViewById(R.id.aprobar);
+            rechazar = itemView.findViewById(R.id.rechazar);
 
             txtDireccion= itemView.findViewById(R.id.direccionReserva);
             txtEstado = itemView.findViewById(R.id.estadoReserva);

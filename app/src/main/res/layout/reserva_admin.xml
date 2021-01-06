@@ -7,10 +7,10 @@
 
     <TextView
         android:id="@+id/tipoReserva"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="142dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
         android:text="@string/tipo"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -19,8 +19,9 @@
 
     <TextView
         android:id="@+id/marcaReserva"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="145dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="4dp"
         android:text="@string/marca"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/tipoReserva"
@@ -37,8 +38,36 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/marcaReserva"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.756"
         app:layout_constraintStart_toEndOf="@+id/tipoReserva"
         app:layout_constraintTop_toTopOf="@+id/tipoReserva"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/aprobar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="76dp"
+        android:text="APROBAR"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/marcaReserva"
+        app:layout_constraintTop_toBottomOf="@+id/estadoReserva" />
+
+    <Button
+        android:id="@+id/rechazar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="16dp"
+        android:text="RECHAZAR"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/aprobar"
+        app:layout_constraintTop_toBottomOf="@+id/estadoReserva" />
 </androidx.constraintlayout.widget.ConstraintLayout>

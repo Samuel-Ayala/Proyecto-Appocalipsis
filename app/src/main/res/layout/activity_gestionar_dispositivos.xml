@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/textView9"
@@ -19,6 +20,7 @@
             android:layout_marginBottom="32dp"
             android:text="@string/gestionar_dispositivos"
             android:textSize="24sp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.581"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +28,7 @@
 
         <Button
             android:id="@+id/agregarDispositivo"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:text="@string/agregar_dispositivo" />

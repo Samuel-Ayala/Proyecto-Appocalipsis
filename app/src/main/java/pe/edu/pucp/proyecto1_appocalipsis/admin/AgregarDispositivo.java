@@ -139,6 +139,7 @@ public class AgregarDispositivo extends AppCompatActivity {
                                 final DatabaseReference currentUserDB = userDatabase.child(nombreCarpetaDispositivo);
 
                                 Dispositivo d = new Dispositivo();
+                                d.setTipo(tipo.getSelectedItem().toString());
                                 d.setStock(Integer.parseInt(stock.getText().toString()));
                                 d.setMarca(marca.getText().toString());
                                 d.setIncluye(incluye.getText().toString());
@@ -157,6 +158,7 @@ public class AgregarDispositivo extends AppCompatActivity {
                     } else {
                         final DatabaseReference currentUserDB = userDatabase.child(nombreCarpetaDispositivo);
                         Dispositivo d = new Dispositivo();
+                        d.setTipo(tipo.getSelectedItem().toString());
                         d.setStock(Integer.parseInt(stock.getText().toString()));
                         d.setMarca(marca.getText().toString());
                         d.setIncluye(incluye.getText().toString());

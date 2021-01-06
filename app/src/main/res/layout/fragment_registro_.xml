@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C8CFEA"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.Registro_Fragment">
 
@@ -27,7 +26,6 @@
                 android:layout_marginEnd="32dp"
                 android:text="@string/bienvenido_al_sistema_de_reserva_de_dispositivos_inform_ticos"
                 android:textAlignment="center"
-                android:textColor="#010209"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +38,6 @@
                 android:layout_height="75dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/subtituloRegistro"
-                android:textColor="#010209"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView11"
                 app:layout_constraintHorizontal_bias="0.496"
@@ -57,13 +54,12 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/nombre_completo"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:textColorHint="#010209"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
                 app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
 
 
             <EditText
@@ -76,13 +72,12 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/correo_electr_nico"
+                android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
-                android:textColorHint="#010209"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
                 app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
 
 
             <EditText
@@ -95,14 +90,13 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/c_digo"
+                android:importantForAutofill="no"
                 android:inputType="number"
-                android:textColorHint="#010209"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/inputPasswordRegistro"
@@ -114,13 +108,12 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/contrase_a"
+                android:importantForAutofill="no"
                 android:inputType="textPassword"
-                android:textColorHint="#010209"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/spinner2"
                 app:layout_constraintStart_toStartOf="@+id/spinner2"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
             <Spinner
                 android:id="@+id/spinnerRoles"
@@ -164,7 +157,6 @@
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/boton_registro"
                 android:text="@string/cancelar"
-                android:textColor="#010209"
                 app:layout_constraintEnd_toEndOf="@+id/button4"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="@+id/buttonAceptarRegistro"

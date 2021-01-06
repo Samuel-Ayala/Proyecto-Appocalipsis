@@ -94,41 +94,41 @@ public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReser
                             reserva.setJustificacion(justificacion.getText().toString());
                             String newRef = reserva.getId();
                             reference.child("reservas").child(newRef).setValue(reserva);
+                            if(reserva.isEnviarCorreo()){
 
-                            // Obtengo el correo del usuario
-                            final Usuario usr = new Usuario();
-                            DatabaseReference referenciaUsusarios = reference.child("usuarios");
-                            referenciaUsusarios.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                        Usuario usuario = ds.getValue(Usuario.class);
-                                        if(ds.getKey().equals(reserva.getUsuario())){
-                                            Log.d("DENTRO","El ds.getKey() es :"+ds.getKey());
-                                            Log.d("DENTRO","El reserva.getUsuario() es :"+reserva.getUsuario());
-                                            Log.d("DENTRO","El correo es :"+usuario.getCorreo());
-                                            usr.setCorreo(usuario.getCorreo());
+                                // Obtengo el correo del usuario
+                                final Usuario usr = new Usuario();
+                                final String correo;
+                                DatabaseReference referenciaUsusarios = reference.child("usuarios");
+                                referenciaUsusarios.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                            Usuario usuario = ds.getValue(Usuario.class);
+                                            if(ds.getKey().equals(reserva.getUsuario())){
+                                                usr.setCorreo(usuario.getCorreo());
+                                                //Mando el correo
+                                                String subject = "Justificacion rechazo reserva APPOCALIPSIS";
+                                                Intent email = new Intent(Intent.ACTION_SEND);
+                                                Log.d("DENTRO","El correo a enviar es a :"+ usr.getCorreo() );
+                                                email.putExtra(Intent.EXTRA_EMAIL, new String[]{ usr.getCorreo()} );
+                                                email.putExtra(Intent.EXTRA_SUBJECT, subject);
+                                                email.putExtra(Intent.EXTRA_TEXT, reserva.getJustificacion());
+                                                email.setType("message/rfc822");
+                                                //startActivity(Intent.createChooser(email, "Choose an Email client :"));
+                                                context.startActivity(Intent.createChooser(email, "Choose an Email client :"));
+                                            }
                                         }
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                    Toast.makeText(context, "Error al setear correo", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Toast.makeText(context, "Error al setear correo", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
 
 
-                            //Mando el correo
-                            String subject = "Justificacion rechazo reserva APPOCALIPSIS";
-
-                            Intent email = new Intent(Intent.ACTION_SEND);
-                            email.putExtra(Intent.EXTRA_EMAIL, new String[]{usr.getCorreo()});
-                            email.putExtra(Intent.EXTRA_SUBJECT, subject);
-                            email.putExtra(Intent.EXTRA_TEXT, reserva.getJustificacion());
-                            email.setType("message/rfc822");
-                            //startActivity(Intent.createChooser(email, "Choose an Email client :"));
-                            context.startActivity(Intent.createChooser(email, "Choose an Email client :"));
                         }
                     });
                     builder.show();

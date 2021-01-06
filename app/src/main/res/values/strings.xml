@@ -74,4 +74,6 @@
     <string name="editar">editar</string>
     <string name="eliminar">eliminar</string>
     <string name="imagen">imagen</string>
+    <string name="aprobar">APROBAR</string>
+    <string name="rechazar">RECHAZAR</string>
 </resources>

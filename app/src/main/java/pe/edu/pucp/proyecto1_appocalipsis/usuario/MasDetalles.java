@@ -15,10 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
+import pe.edu.pucp.proyecto1_appocalipsis.General.LoginRegistroActivity;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class MasDetalles extends AppCompatActivity {
@@ -98,6 +100,12 @@ public class MasDetalles extends AppCompatActivity {
             case R.id.solicitudesReservaBar:
                 intent = new Intent(getApplicationContext(),SolicitudesDePrestamo.class);
                 startActivity(intent);
+                return true;
+            case R.id.cerrarSesionBar:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent2 = new Intent(getApplicationContext(), LoginRegistroActivity.class);
+                startActivity(intent2);
+                finish();
                 return true;
 
         }

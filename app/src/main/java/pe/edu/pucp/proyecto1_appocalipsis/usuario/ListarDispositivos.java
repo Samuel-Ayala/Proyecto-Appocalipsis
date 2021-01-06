@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosITAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Adapters.DispositivosUserAdapter;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
+import pe.edu.pucp.proyecto1_appocalipsis.General.LoginRegistroActivity;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class ListarDispositivos extends AppCompatActivity {
@@ -168,8 +170,6 @@ public class ListarDispositivos extends AppCompatActivity {
         switch (item.getItemId())
         {
             case R.id.listarDispositvosBar:
-                intent = new Intent(getApplicationContext(),ListarDispositivos.class);
-                startActivity(intent);
                 return true;
 
             case R.id.historialReservasBar:
@@ -180,6 +180,13 @@ public class ListarDispositivos extends AppCompatActivity {
             case R.id.solicitudesReservaBar:
                 intent = new Intent(getApplicationContext(),SolicitudesDePrestamo.class);
                 startActivity(intent);
+                return true;
+
+            case R.id.cerrarSesionBar:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent2 = new Intent(getApplicationContext(), LoginRegistroActivity.class);
+                startActivity(intent2);
+                finish();
                 return true;
 
         }

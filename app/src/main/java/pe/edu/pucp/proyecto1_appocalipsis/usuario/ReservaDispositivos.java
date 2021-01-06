@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Dispositivo;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Reserva;
 import pe.edu.pucp.proyecto1_appocalipsis.Entity.Usuario;
+import pe.edu.pucp.proyecto1_appocalipsis.General.LoginRegistroActivity;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class ReservaDispositivos extends AppCompatActivity {
@@ -194,6 +195,13 @@ public class ReservaDispositivos extends AppCompatActivity {
             case R.id.solicitudesReservaBar:
                 intent = new Intent(getApplicationContext(),SolicitudesDePrestamo.class);
                 startActivity(intent);
+                return true;
+
+            case R.id.cerrarSesionBar:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent2 = new Intent(getApplicationContext(), LoginRegistroActivity.class);
+                startActivity(intent2);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

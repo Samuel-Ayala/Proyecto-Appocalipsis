@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import pe.edu.pucp.proyecto1_appocalipsis.General.LoginRegistroActivity;
 import pe.edu.pucp.proyecto1_appocalipsis.R;
 
 public class MenuPrincipalAdmin extends AppCompatActivity {
@@ -29,6 +30,7 @@ public class MenuPrincipalAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal_admin);
 
+        /*
         ///////////////////////Obtencion de datos de Database y guardado de datos/////////////////////////////////
         Bundle parametros = this.getIntent().getExtras();
         String email = parametros.getString("email");
@@ -46,29 +48,26 @@ public class MenuPrincipalAdmin extends AppCompatActivity {
         pref.putString("email",email);
         pref.putString("rol", rol);
         pref.apply();
+        */
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         ///////////////////////////////////////// Cerrar Sesion //////////////////////////////////////////////
         Button logout;
-        logout = (Button) findViewById(R.id.cerrarSessionAdmin);
+        logout = findViewById(R.id.cerrarSessionAdmin);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                /////////  Borrado de datos  ///////////////
-                SharedPreferences.Editor pref = getSharedPreferences("Datos", Context.MODE_PRIVATE).edit();
-                pref.clear();
-                pref.apply();
-                FirebaseAuth.getInstance().signOut();
-                onBackPressed();
+                cerrarSesion();
             }
         });
+
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////
 
         ////////////////////////////// IR A GESTION DE DISPOSITIVOS /////////////////////////////////////////
 
-        Button buttonGestionarDispositivos = (Button) findViewById(R.id.gestionar);
+        Button buttonGestionarDispositivos = findViewById(R.id.gestionar);
         buttonGestionarDispositivos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,5 +77,12 @@ public class MenuPrincipalAdmin extends AppCompatActivity {
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
+    public void cerrarSesion()
+    {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent2 = new Intent(getApplicationContext(), LoginRegistroActivity.class);
+        startActivity(intent2);
+        finish();
     }
 }

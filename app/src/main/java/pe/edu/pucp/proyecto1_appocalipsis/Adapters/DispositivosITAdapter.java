@@ -80,7 +80,8 @@ public class DispositivosITAdapter extends RecyclerView.Adapter<DispositivosITAd
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditarDispositivo.class);
                 intent.putExtra("Dispositivo",dispositivo);
-                context.startActivity(intent);
+                GestionarDispositivos gd = (GestionarDispositivos) context;
+                gd.startActivityForResult(intent,2);
             }
         });
 

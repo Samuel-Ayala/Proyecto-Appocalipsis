@@ -7,6 +7,7 @@ public class Dispositivo implements Serializable {
     private String marca;
     private String caracteristicas;
     private String incluye;
+    private String imagen;
     private String foto;
     private int stock;
 
@@ -59,5 +60,13 @@ public class Dispositivo implements Serializable {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

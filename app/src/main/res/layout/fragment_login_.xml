@@ -73,6 +73,7 @@
             android:layout_marginTop="76dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/boton_redondeado"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:text="Ingresar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"

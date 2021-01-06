@@ -39,10 +39,11 @@
 
     <Button
         android:id="@+id/detalles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:text="@string/mas_detalles"
+        android:background="@drawable/boton_registro"
         app:layout_constraintStart_toStartOf="@+id/imagenDispositivo"
         app:layout_constraintTop_toBottomOf="@+id/imagenDispositivo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

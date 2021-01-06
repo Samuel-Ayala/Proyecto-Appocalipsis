@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".usuario.ListarDispositivos">
+    android:background="@drawable/fondo2"
+    tools:context=".usuario.ListarDispositivos"
+    android:layout_gravity="center">
 
     <EditText
         android:id="@+id/filtroTipo"
@@ -26,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/lista_de_dispositivos"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.581"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +46,7 @@
         android:id="@+id/lupa"
         android:layout_width="48dp"
         android:layout_height="46dp"
-        android:background="@drawable/boton_redondeado"
+        android:background="@drawable/boton_buscar"
         android:contentDescription="@string/buscar_dispositivo"
         app:layout_constraintBottom_toBottomOf="@+id/filtroTipo"
         app:layout_constraintStart_toEndOf="@+id/filtroTipo"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo2"
     tools:context=".admin.MenuPrincipalAdmin">
 
     <ScrollView
@@ -14,7 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp">
 
             <TextView
                 android:id="@+id/textView5"
@@ -22,26 +25,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="Bienvenido al menu principal ADMIN"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/reserva"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/gestionar"
-                android:layout_width="322dp"
-                android:layout_height="83dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="Gestionar Dispositivos"
+                android:background="@drawable/boton_buscar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/reserva"
-                android:layout_width="363dp"
-                android:layout_height="67dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="Pedidos de Reserva"
+                android:background="@drawable/boton_pedidos"
                 app:layout_constraintBottom_toTopOf="@+id/gestionar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -49,11 +57,13 @@
 
             <Button
                 android:id="@+id/cerrarSessionAdmin"
-                android:layout_width="362dp"
-                android:layout_height="67dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="12dp"
                 android:text="Cerrar Sesion"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:background="@drawable/boton_cerrar_sesion"
                 app:layout_constraintBottom_toTopOf="@+id/gestionar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"

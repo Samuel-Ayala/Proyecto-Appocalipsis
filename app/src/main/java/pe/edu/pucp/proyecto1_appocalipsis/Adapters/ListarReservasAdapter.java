@@ -51,24 +51,6 @@ public class ListarReservasAdapter extends RecyclerView.Adapter<ListarReservasAd
         holder.txtTipo.setText(reserva.getDispositivo().getTipo());
         holder.txtMarca.setText(reserva.getDispositivo().getMarca());
 
-        //Aqui va la logica de los botones de aceptar o rechazar la reserva
-
-
-        holder.aprobar.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                reserva.setEstado("aceptado");
-            }
-        });
-
-        holder.rechazar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reserva.setEstado("rechazado");
-            }
-        });
-
     }
 
     @Override

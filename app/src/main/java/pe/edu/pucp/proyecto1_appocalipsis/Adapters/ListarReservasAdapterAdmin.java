@@ -1,11 +1,15 @@
 package pe.edu.pucp.proyecto1_appocalipsis.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,15 +59,26 @@ public class ListarReservasAdapterAdmin extends RecyclerView.Adapter<ListarReser
             @Override
             public void onClick(View v) {
                 reserva.setEstado("aceptado");
+                //Toast.makeText("Se acepto el dispositivo", "",Toast.LENGTH_SHORT).show();
             }
         });
 
         holder.rechazar.setOnClickListener(new View.OnClickListener(){
-                @Override
+            @Override
                 public void onClick(View v) {
                     reserva.setEstado("rechazado");
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Justificacion del rechazo");
+                    builder.setMessage("Ingrese la justificacion") ;
+                    final EditText justificacion = new EditText(context);
+                    builder.setView(justificacion);
+                    builder.setPositiveButton("confirmar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            reserva.setJustificacion(justificacion.getText().toString());
+                        }
+                    });
                 }
-
         });
 
     }

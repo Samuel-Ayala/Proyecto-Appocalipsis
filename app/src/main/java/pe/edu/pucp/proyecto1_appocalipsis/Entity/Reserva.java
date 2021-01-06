@@ -11,6 +11,7 @@ public class Reserva {
     private boolean enviarCorreo;
     private String estado;
     private String usuario;
+    private String justificacion;
 
     public String getUsuario() {
         return usuario;
@@ -66,5 +67,13 @@ public class Reserva {
 
     public void setEnviarCorreo(boolean enviarCorreo) {
         this.enviarCorreo = enviarCorreo;
+    }
+
+    public String getJustificacion() {
+        return justificacion;
+    }
+
+    public void setJustificacion(String justificacion) {
+        this.justificacion = justificacion;
     }
 }

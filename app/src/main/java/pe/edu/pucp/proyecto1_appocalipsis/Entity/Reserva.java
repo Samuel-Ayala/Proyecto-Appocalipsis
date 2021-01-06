@@ -10,13 +10,13 @@ public class Reserva {
     private ArrayList<Double> ubicacion; //con GPS
     private boolean enviarCorreo;
     private String estado;
-    private Usuario usuario;
+    private String usuario;
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 

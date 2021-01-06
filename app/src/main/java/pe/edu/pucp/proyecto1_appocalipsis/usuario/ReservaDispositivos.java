@@ -113,7 +113,7 @@ public class ReservaDispositivos extends AppCompatActivity {
                     reserva.setMotivo(motivo.getText().toString());
                     reserva.setEstado("Procesando");
                     //Agregar la sesion
-                    reserva.setUsuario(sesion);
+                    reserva.setUsuario(currentUser.getUid());
                     //añadir la ubicacion
                     reserva.setUbicacion(ubicacion);
                     //Hacer el post

@@ -38,6 +38,8 @@ public class LoginRegistroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
         if(currentUser!=null)
         {
             Log.d("evaluando", "entro directo con: "+ currentUser.getDisplayName());

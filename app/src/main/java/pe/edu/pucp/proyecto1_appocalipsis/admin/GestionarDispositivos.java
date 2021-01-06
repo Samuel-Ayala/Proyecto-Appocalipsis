@@ -49,7 +49,7 @@ public class GestionarDispositivos extends AppCompatActivity {
         });
     }
 
-    private void listarDispositivos() {
+    public void listarDispositivos() {
 
         final List<Dispositivo> listaDispos = new ArrayList<>();
 

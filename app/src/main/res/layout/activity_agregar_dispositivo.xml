@@ -37,7 +37,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/style_spinner"
-
                     android:entries="@array/dispositivos"
                     app:layout_constraintBottom_toBottomOf="@+id/textView12"
                     app:layout_constraintEnd_toEndOf="parent"
